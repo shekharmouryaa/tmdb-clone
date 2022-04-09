@@ -1,5 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   render() {
@@ -7,11 +7,11 @@ export default class Navbar extends Component {
       <header>
         <div className="container-fluid">
           <div className="nav-title">
-            <Link to="/"><img height="30px" src="\assets\tmdb.svg" alt="logo" /></Link>
-            <Link to="/" className="link">Movies</Link>
-            <Link to="/" className="link">TV Shows</Link>
-            <Link to="/" className="link">More</Link>
-            <Link to="/favouritelist" className="link">Login</Link>
+            <a to="/"><img height="20px" src="\assets\tmdb.svg" alt="logo" /></a>
+            <a to="/" className="link">Movies</a>
+            <a to="/" className="link">TV Shows</a>
+            <a to="/" className="link">More</a>
+            <a to="/favouritelist" className="link">Login</a>
           </div>
         </div>
       </header>

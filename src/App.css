@@ -1,3 +1,9 @@
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 input[type="number"] {
   -moz-appearance: textfield;
 }
@@ -58,9 +64,9 @@ body {
 
 .banner {
   background-image: linear-gradient(to right,
-      rgba(7, 83, 97, 0.9),
-      rgb(16, 50, 163, 0.1)),
-    url("https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/34OGjFEbHj0E3lE2w0iTUVq0CBz.jpg");
+      rgba(3, 39, 67, 0.955),
+      rgba(16, 67, 163, 0.172)),
+    url("https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/zqkmTXzjkAgXmEWLRsY4UpTWCeo.jpg");
   color: #fff;
   min-height: 300px;
   height: calc(100vh / 2.5);
@@ -131,14 +137,28 @@ div.column_wrapper {
 }
 
 .link {
+  font-family: 'Source Sans Pro', sans-serif;
   text-decoration: none;
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: 600;
   margin-left: 50px;
+  line-height: 20px;
+  font-style: normal;
+}
+
+.link:hover {
+  color: #fff;
+  cursor: pointer;
 }
 
 header {
   background-color: #032744;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .main-content {
@@ -153,14 +173,14 @@ header {
 
 .search-box {
   font-size: 20px;
-  height: 50px;
+  height: 45px;
   padding: 15px 25px;
   border-radius: 25px;
   border: 1px solid white;
 }
 
 .search-button {
-  height: 50px;
+  height: 45px;
   padding: 10px 26px;
   border: none;
   background: linear-gradient(to right, #1cd2ae 0%, #06bad8 100%);
@@ -180,8 +200,9 @@ header {
 .HeadingContainer {
   color: #032744;
   letter-spacing: 1px;
-  width: 200px;
+  width: fit-content;
   font-size: 25px;
+  padding: 0 15px;
 }
 
 .selector_wrapper {
@@ -232,6 +253,7 @@ header {
   overflow-y: hidden;
   height: 400px;
   margin: 10px 5px;
+  padding: 0 15px;
 }
 
 .vertical-card {
@@ -248,28 +270,7 @@ header {
   left: 0;
 }
 
-.should_fade:after {
-  content: '';
-  width: 60px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #fff 100%);
-  will-change: opacity;
-  pointer-events: none;
-}
 
-/* .card-horizontal {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-}
-
-.vertical-card {
-  width: 150px;
-  height: 225px;
-} */
 .img-fluid {
   border-radius: 8px;
 }
@@ -429,7 +430,8 @@ footer {
   align-self: flex-start;
   padding-top: 30px;
 }
-.footer-title{
+
+.footer-title {
   position: relative;
   left: 75px;
 }

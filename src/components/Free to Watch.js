@@ -1,92 +1,65 @@
 import React, { useEffect, useState } from "react";
 import useStore from "../Store/store";
-import {
-  getPopularMovies,
-  getOnRent,
-  getPopularTvShows,
-  getInTheaters,
-} from "../API/api";
+import { getFreeTvShow, getFreeMovies } from "../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
 
-export default function WhatsPopulars() {
+export default function FreeToWatch() {
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
   const pagenumber = useStore((state) => state.pagenumber);
-  const populars = useStore((state) => state.populars);
-  const setPopulars = useStore((state) => state.setPopulars);
+
+  const topRated = useStore((state) => state.topRated);
+  const settopRated = useStore((state) => state.settopRated);
 
   const [active, setActive] = useState("");
 
   useEffect(() => {
-    getPopularMovies(pagenumber).then((movies) =>
-      setPopulars(populars.concat(movies.data.results))
+    getFreeMovies(pagenumber).then((movies) =>
+      settopRated(topRated.concat(movies.data.results))
     );
     setLoading();
-    setActive("Streaming");
+    setActive("movies");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagenumber]);
 
   const getMoviesData = () => {
-    getPopularMovies(pagenumber).then((tv) => setPopulars(tv.data.results));
-    setActive("Streaming");
+    getFreeMovies(pagenumber).then((tv) => settopRated(tv.data.results));
+    setActive("movies");
   };
   const getTvData = () => {
-    getPopularTvShows(pagenumber).then((tv) => setPopulars(tv.data.results));
+    getFreeTvShow(pagenumber).then((tv) => settopRated(tv.data.results));
     setActive("tv");
   };
-  const getRentData = () => {
-    getOnRent(pagenumber).then((tv) => setPopulars(tv.data.results));
-    setActive("rent");
-  };
-  const getInTheatersData = () => {
-    getInTheaters(pagenumber).then((tv) => setPopulars(tv.data.results));
-    setActive("theater");
-  };
-  console.log("populars", populars);
+
   return (
     <>
       {
         <div className="container-fluid main-content">
           <div className="column_header">
             <div className="HeadingContainer">
-              <span className="section-title">What's Popular</span>
+              <span className="section-title">Free To Watch</span>
             </div>
             <div className="selector_wrapper ">
               <div
-                className={`anchor ${
-                  active === "Streaming" ? "selected" : null
-                }`}
+                className={`anchor ${active === "movies" ? "selected" : null}`}
                 onClick={() => getMoviesData()}
               >
-                Streaming
+                Movies
               </div>
 
               <div
                 className={`anchor ${active === "tv" ? "selected" : null}`}
                 onClick={() => getTvData()}
               >
-                On TV
-              </div>
-
-              <div
-                className={`anchor ${active === "rent" ? "selected" : null}`}
-                onClick={() => getRentData()}
-              >
-                For Rent
-              </div>
-              <div
-                className={`anchor ${active === "theater" ? "selected" : null}`}
-                onClick={() => getInTheatersData()}
-              >
-                In Theaters
+                TV
               </div>
             </div>
           </div>
           <div className="card-horizontal scroller_wrap should_fade">
             {loading
-              ? populars.sort().map((moviesobject, i) => (
+              ? topRated.sort().map((moviesobject, i) => (
                   <>
                     <div className="vertical-card card text-white m-2" key={i}>
                       <div>

@@ -3,6 +3,8 @@ import{devtools} from 'zustand/middleware'
 
 let store = (set => ({
     populars:[],
+    topRated:[],
+    trending:[],
     allMovies: [],
     topRatedMovies: [],
     pagenumber:1,
@@ -16,6 +18,8 @@ let store = (set => ({
     trailerKey:'',
     modalIsOpen:false,
     setPopulars: (values) => set(() => ({ populars: values })),
+    settopRated: (values) => set(() => ({ topRated: values })),
+    setTrending: (values) => set(() => ({ trending: values })),
     setAllMovies: (values) => set(() => ({ allMovies: values })),
     setTopRatedMovies: (values) => set(() => ({ topRatedMovies: values })),
     setPagenumber: () => set(state => ({ pagenumber: state.pagenumber + 1 })),

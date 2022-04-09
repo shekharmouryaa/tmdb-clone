@@ -1,92 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect,useState } from "react";
 import useStore from "../Store/store";
-import {
-  getPopularMovies,
-  getOnRent,
-  getPopularTvShows,
-  getInTheaters,
-} from "../API/api";
+import {  getTrendingDay, getTrendingWeek } from "../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
-import {} from "react/cjs/react.production.min";
+import {  } from "react/cjs/react.production.min";
 
-export default function WhatsPopulars() {
+export default function Trending() {
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
   const pagenumber = useStore((state) => state.pagenumber);
-  const populars = useStore((state) => state.populars);
-  const setPopulars = useStore((state) => state.setPopulars);
 
-  const [active, setActive] = useState("");
+  const trending = useStore((state) => state.trending);
+  const setTrending = useStore((state) => state.setTrending);
+  
+  const [active, setActive] = useState('')
+
 
   useEffect(() => {
-    getPopularMovies(pagenumber).then((movies) =>
-      setPopulars(populars.concat(movies.data.results))
+    getTrendingDay(pagenumber).then((movies) =>
+    setTrending(trending.concat(movies.data.results))
     );
     setLoading();
-    setActive("Streaming");
+    setActive("today")
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagenumber]);
+  
+  const getTrendingDayData = () => {
+    getTrendingDay(pagenumber).then((items) => setTrending(items.data.results));
+    setActive("today")
+  };
+  const getTrendingWeekData = () => {
+    getTrendingWeek(pagenumber).then((items) => setTrending(items.data.results));
+    setActive("week")
+  };
 
-  const getMoviesData = () => {
-    getPopularMovies(pagenumber).then((tv) => setPopulars(tv.data.results));
-    setActive("Streaming");
-  };
-  const getTvData = () => {
-    getPopularTvShows(pagenumber).then((tv) => setPopulars(tv.data.results));
-    setActive("tv");
-  };
-  const getRentData = () => {
-    getOnRent(pagenumber).then((tv) => setPopulars(tv.data.results));
-    setActive("rent");
-  };
-  const getInTheatersData = () => {
-    getInTheaters(pagenumber).then((tv) => setPopulars(tv.data.results));
-    setActive("theater");
-  };
-  console.log("populars", populars);
   return (
     <>
       {
         <div className="container-fluid main-content">
           <div className="column_header">
             <div className="HeadingContainer">
-              <span className="section-title">What's Popular</span>
+              <span className="section-title">Trending</span>
             </div>
             <div className="selector_wrapper ">
-              <div
-                className={`anchor ${
-                  active === "Streaming" ? "selected" : null
-                }`}
-                onClick={() => getMoviesData()}
-              >
-                Streaming
+              <div className={`anchor ${active==="today" ? "selected" :null}`} onClick={() =>getTrendingDayData()}>
+                Today
               </div>
 
-              <div
-                className={`anchor ${active === "tv" ? "selected" : null}`}
-                onClick={() => getTvData()}
-              >
-                On TV
+              <div className={`anchor ${active==="week" ? "selected" :null}`} onClick={() => getTrendingWeekData()}>
+               This Week
               </div>
-
-              <div
-                className={`anchor ${active === "rent" ? "selected" : null}`}
-                onClick={() => getRentData()}
-              >
-                For Rent
-              </div>
-              <div
-                className={`anchor ${active === "theater" ? "selected" : null}`}
-                onClick={() => getInTheatersData()}
-              >
-                In Theaters
-              </div>
+             
             </div>
           </div>
           <div className="card-horizontal scroller_wrap should_fade">
             {loading
-              ? populars.sort().map((moviesobject, i) => (
+              ? trending.sort().map((moviesobject, i) => (
                   <>
                     <div className="vertical-card card text-white m-2" key={i}>
                       <div>
@@ -119,8 +88,7 @@ export default function WhatsPopulars() {
                           {moviesobject.name || moviesobject.title}
                         </div>
                         <div className="item-score">
-                          {moviesobject.release_date ||
-                            moviesobject.first_air_date}
+                          {moviesobject.release_date || moviesobject.first_air_date}
                         </div>
                       </div>
                     </div>

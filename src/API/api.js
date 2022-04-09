@@ -6,8 +6,37 @@ axios.defaults.baseURL = BASE_URL;
 axios.defaults.customHeaders = true;
 axios.defaults.defaultErrorHandler = true;
 
+
+export const getTrendingDay = async  () => {
+  const data = await axios.get('trending/all/day', {
+      params: {
+      api_key: API_KEY,
+      language: "hi-IN",
+    },
+  })
+  return data
+};
+
+export const getTrendingWeek = async  () => {
+  const data = await axios.get('trending/all/week', {
+      params: {
+      api_key: API_KEY,
+    },
+  })
+  return data
+};
+
+export const getInTheaters= async  () => {
+  const data = await axios.get('/movie/now_playing/', {
+      params: {
+      api_key: API_KEY,
+    },
+  })
+  return data
+};
+
 export const getTopRatedMovies = async  () => {
-  const data = await axios.get("/movie/top_rated/", {
+  const data = await axios.get("", {
       params: {
       api_key: API_KEY,
       language: "en-US",
@@ -17,8 +46,8 @@ export const getTopRatedMovies = async  () => {
   return data
 };
 
-export const getMovies = async  (pagenumber) => {
-  const data = await axios.get("/movie/popular/", {
+export const getPopularMovies = async  (pagenumber) => {
+  const data = await axios.get("/movie/popular", {
       params: {
       api_key: API_KEY,
       language: "en-US",
@@ -27,8 +56,8 @@ export const getMovies = async  (pagenumber) => {
   })
   return data
 };
-export const getTvShow = async  (pagenumber) => {
-  const data = await axios.get("/tv/popular/", {
+export const getPopularTvShows = async  (pagenumber) => {
+  const data = await axios.get("/tv/popular", {
       params: {
       api_key: API_KEY,
       language: "en-US",
@@ -37,16 +66,44 @@ export const getTvShow = async  (pagenumber) => {
   })
   return data
 };
-//&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=rent
+export const getFreeMovies = async  (pagenumber) => {
+  const data = await axios.get("/discover/movie/", {
+    params: {
+    api_key: API_KEY,
+    language: "en-US",
+    sort_by:"vote_count.desc",
+    page: pagenumber,
+    include_video: "false",
+    include_adult:"false",
+    with_watch_monetization_types:"free",
+  },
+  })
+  return data
+};
+export const getFreeTvShow = async  (pagenumber) => {
+  const data = await axios.get("/discover/tv/", {
+    params: {
+    api_key: API_KEY,
+    language: "en-US",
+    sort_by:"vote_count.desc",
+    page: pagenumber,
+    include_video: "false",
+    include_adult:"false",
+    with_watch_monetization_types:"free",
+  },
+  })
+  return data
+};
 export const getOnRent = async  (pagenumber) => {
   const data = await axios.get("/discover/movie/", {
       params: {
       api_key: API_KEY,
       language: "en-US",
+      sort_by:"vote_count.desc",
       page: pagenumber,
-      sort_by: "popularity",
       include_video: "false",
-      with_watch_monetization_types:"rent"
+      include_adult:"false",
+      with_watch_monetization_types:"rent",
     },
   })
   return data
@@ -60,4 +117,5 @@ export const getTrailer = async  (movieid) => {
   })
   return data.data.results.filter(key => key.type === "Trailer")[0].key
 };
+
 
