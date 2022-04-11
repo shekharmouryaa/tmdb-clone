@@ -5,11 +5,20 @@ import Trending from "./Trending";
 import WhatsPopulars from "./WhatsPopulars";
 
 export default function HomeCotent() {
-  const currenttext = useStore((state) => state.currenttext);
-  const setCurrenttext = useStore((state) => state.setCurrenttext);
+  // const currenttext = useStore((state) => state.currenttext);
+  // const setCurrenttext = useStore((state) => state.setCurrenttext);
+  const populars = useStore((state) => state.populars)
+
+  const backgroundImage = populars.map(img => img.backdrop_path)[Math.floor(Math.random()*populars.length)]
+  console.log(backgroundImage);
+  const handleSubmit = (e) => e.preventDefault();
   return (
     <div>
-      <section className="inner_content banner">
+      <section className="inner_content banner"
+      style={{backgroundImage: `linear-gradient(to right,
+      rgba(3, 40, 68, 0.955),
+      rgba(16, 67, 163, 0.438)),
+    url("https://image.tmdb.org/t/p/original${backgroundImage}")`}}>
         <div className="column_wrapper">
           <div className="content_wrapper wrap">
             <div className="title">
@@ -24,14 +33,15 @@ export default function HomeCotent() {
               <form
                 className="search"
                 style={{ display: "flex", marginTop: "30px" }}
+                onSubmit={handleSubmit}
               >
                 <input
                   className="form-control search-box"
                   type="search"
-                  placeholder="Search for a movie, tv show, person......"
+                  placeholder="Search"
                   aria-label="Search"
-                  value={currenttext}
-                  onChange={(e) => setCurrenttext(e.target.value)}
+                  // value={currenttext}
+                  // onChange={(e) => setCurrenttext(e.target.value)}
                 />
                 <button className="search-button">Search</button>
               </form>
@@ -39,9 +49,9 @@ export default function HomeCotent() {
           </div>
         </div>
       </section>
-      <Trending />
       <WhatsPopulars />
       <FreeToWatch />
+      <Trending />
     </div>
   );
 }

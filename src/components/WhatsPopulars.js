@@ -9,9 +9,9 @@ import {
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 export default function WhatsPopulars() {
-  const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
   const pagenumber = useStore((state) => state.pagenumber);
   const populars = useStore((state) => state.populars);
@@ -56,7 +56,7 @@ export default function WhatsPopulars() {
             <div className="selector_wrapper ">
               <div
                 className={`anchor ${
-                  active === "Streaming" ? "selected" : null
+                  active === "Streaming" ? "selected" : ""
                 }`}
                 onClick={() => getMoviesData()}
               >
@@ -64,20 +64,20 @@ export default function WhatsPopulars() {
               </div>
 
               <div
-                className={`anchor ${active === "tv" ? "selected" : null}`}
+                className={`anchor ${active === "tv" ? "selected" : ""}`}
                 onClick={() => getTvData()}
               >
                 On TV
               </div>
 
               <div
-                className={`anchor ${active === "rent" ? "selected" : null}`}
+                className={`anchor ${active === "rent" ? "selected" : ""}`}
                 onClick={() => getRentData()}
               >
                 For Rent
               </div>
               <div
-                className={`anchor ${active === "theater" ? "selected" : null}`}
+                className={`anchor ${active === "theater" ? "selected" : ""}`}
                 onClick={() => getInTheatersData()}
               >
                 In Theaters
@@ -85,7 +85,7 @@ export default function WhatsPopulars() {
             </div>
           </div>
           <div className="card-horizontal scroller_wrap should_fade">
-            {loading
+            {populars.length
               ? populars.sort().map((moviesobject, i) => (
                   <>
                     <div className="vertical-card card text-white m-2" key={i}>
@@ -126,7 +126,9 @@ export default function WhatsPopulars() {
                     </div>
                   </>
                 ))
-              : null}
+              : <div style={{ display: "flex"}}>
+              <LoadingSkeleton/>
+              </div>}
           </div>
         </div>
       }

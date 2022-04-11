@@ -50,23 +50,30 @@ body {
   justify-content: center;
 }
 
-.nav-title {
+.content {
+  width: 100%;
   display: flex;
+  justify-content: center;
+}
+
+.nav-menu {
+  display: flex;
+  display: flex;
+  justify-content: space-between;
   padding: 15px 30px;
   align-items: center;
-  font-family: Georgia, "Times New Roman", Times, serif;
   position: sticky;
   top: 0px;
+  left: 0;
   z-index: 1;
   max-width: 1400px;
   margin: auto;
+  position: relative;
+  width: 100%;
+  padding: 15px 40px;
 }
 
 .banner {
-  background-image: linear-gradient(to right,
-      rgba(3, 39, 67, 0.955),
-      rgba(16, 67, 163, 0.172)),
-    url("https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/zqkmTXzjkAgXmEWLRsY4UpTWCeo.jpg");
   color: #fff;
   min-height: 300px;
   height: calc(100vh / 2.5);
@@ -137,13 +144,13 @@ div.column_wrapper {
 }
 
 .link {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", Arial, sans-serif;
   text-decoration: none;
   color: #fff;
   font-size: 16px;
   font-weight: 600;
-  margin-left: 50px;
-  line-height: 20px;
+  margin-left: 45px;
+  line-height: 24px;
   font-style: normal;
 }
 
@@ -151,7 +158,9 @@ div.column_wrapper {
   color: #fff;
   cursor: pointer;
 }
-
+.nav-link{
+  display:inline;
+}
 header {
   background-color: #032744;
 }
@@ -190,7 +199,8 @@ header {
 
 .column_header {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   align-content: center;
   padding-top: 10px;
@@ -216,26 +226,27 @@ header {
 
 .selector_wrapper h3 {
   font-size: 20px;
-  padding: 5px 20px;
+  padding: 1px 20px;
 }
 
 .selected {
   color: #63f0cf;
-  border-radius: 24px;
+  border-radius: 15px;
   top: 0;
   left: 0;
   pointer-events: none;
   transition: left 0.25s;
   background-color: #032541;
-}
-
-.anchor:hover {
-  cursor: pointer;
+  border: 0.5px solid #032541
 }
 
 .anchor {
   height: 30px;
   padding: 1px 20px;
+  width: max-content;
+}
+.anchor:hover {
+  cursor: pointer;
 }
 
 .movie-list {
@@ -259,7 +270,7 @@ header {
 .vertical-card {
   width: 150px;
   height: 225px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 20px 10px;
   flex: 0 0 auto;
 }
@@ -273,6 +284,8 @@ header {
 
 .img-fluid {
   border-radius: 8px;
+  background-color: #d8d8d8;
+
 }
 
 .card:hover {
@@ -405,49 +418,62 @@ td:nth-child(1) {
 
 footer {
   background-color: #032744;
-  display: flex;
-  flex-direction: row;
   justify-content: center;
 }
 
 .footer {
-
   min-height: 250px;
   display: flex;
   flex-direction: row;
-  place-items: center;
-  margin: 0 auto;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .footer-items {
   color: white;
   line-height: 5px;
   font-weight: 500;
-  margin: 10px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  align-self: flex-start;
   padding-top: 30px;
-}
-
-.footer-title {
-  position: relative;
-  left: 75px;
+  min-width: 200px;
 }
 
 p.footer-btn {
-  width: 200px;
-  height: 40px;
+  width: 160px;
+  height: 30px;
   background-color: white;
   color: #01b4e4;
-  font-size: 18px;
+  font-size: 16px;
   text-transform: capitalize;
   place-items: center;
   display: flex;
-  padding: 8px 16px;
+  padding: 4px 6px;
   font-weight: 600;
   border: 2px solid #fff;
   border-radius: 5px;
   margin-top: 25px;
+}
+
+
+/* For Mobile Device  */
+
+@media only screen  and (max-width:520px){
+  .footer{
+    flex-direction: column;
+    padding-left: 15px;
+  }
+  .nav-link{
+    display:none;
+  }
+  .submenu-right .link{
+    margin-left: 15px;
+  }
+.nav-menu{
+  padding:15px 10px;
+}
+.anchor {
+  height: 30px;
+  padding: 2px 10px;
+  width: max-content;
+}
+  
 }

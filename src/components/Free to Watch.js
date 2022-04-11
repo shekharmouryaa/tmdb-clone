@@ -4,9 +4,9 @@ import { getFreeTvShow, getFreeMovies } from "../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 export default function FreeToWatch() {
-  const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
   const pagenumber = useStore((state) => state.pagenumber);
 
@@ -53,12 +53,12 @@ export default function FreeToWatch() {
                 className={`anchor ${active === "tv" ? "selected" : null}`}
                 onClick={() => getTvData()}
               >
-                TV
+                TV Shows
               </div>
             </div>
           </div>
           <div className="card-horizontal scroller_wrap should_fade">
-            {loading
+            {topRated.length
               ? topRated.sort().map((moviesobject, i) => (
                   <>
                     <div className="vertical-card card text-white m-2" key={i}>
@@ -99,7 +99,9 @@ export default function FreeToWatch() {
                     </div>
                   </>
                 ))
-              : null}
+              :<div style={{ display: "flex"}}>
+              <LoadingSkeleton/>
+              </div>}
           </div>
         </div>
       }
