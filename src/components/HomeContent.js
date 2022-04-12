@@ -4,7 +4,7 @@ import FreeToWatch from "./Free to Watch";
 import Trending from "./Trending";
 import WhatsPopulars from "./WhatsPopulars";
 
-export default function HomeCotent() {
+export default function HomeContent() {
   // const currenttext = useStore((state) => state.currenttext);
   // const setCurrenttext = useStore((state) => state.setCurrenttext);
   const populars = useStore((state) => state.populars)

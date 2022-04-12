@@ -342,6 +342,9 @@ header {
   box-shadow: none !important;
 }
 
+.card {
+border:none !important;
+}
 .card-texts {
   display: flex;
   flex-direction: inherit;
