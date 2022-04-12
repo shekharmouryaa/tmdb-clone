@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/tmdb-clone/static/css/main.f521aa33.chunk.css",
-    "main.js": "/tmdb-clone/static/js/main.4af59895.chunk.js",
-    "main.js.map": "/tmdb-clone/static/js/main.4af59895.chunk.js.map",
+    "main.css": "/tmdb-clone/static/css/main.68361671.chunk.css",
+    "main.js": "/tmdb-clone/static/js/main.8a75ac1d.chunk.js",
+    "main.js.map": "/tmdb-clone/static/js/main.8a75ac1d.chunk.js.map",
     "runtime-main.js": "/tmdb-clone/static/js/runtime-main.c6ab8103.js",
     "runtime-main.js.map": "/tmdb-clone/static/js/runtime-main.c6ab8103.js.map",
     "static/css/2.c32d14b5.chunk.css": "/tmdb-clone/static/css/2.c32d14b5.chunk.css",
@@ -10,14 +10,14 @@
     "static/js/2.72be2304.chunk.js.map": "/tmdb-clone/static/js/2.72be2304.chunk.js.map",
     "index.html": "/tmdb-clone/index.html",
     "static/css/2.c32d14b5.chunk.css.map": "/tmdb-clone/static/css/2.c32d14b5.chunk.css.map",
-    "static/css/main.f521aa33.chunk.css.map": "/tmdb-clone/static/css/main.f521aa33.chunk.css.map",
+    "static/css/main.68361671.chunk.css.map": "/tmdb-clone/static/css/main.68361671.chunk.css.map",
     "static/js/2.72be2304.chunk.js.LICENSE.txt": "/tmdb-clone/static/js/2.72be2304.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c6ab8103.js",
     "static/css/2.c32d14b5.chunk.css",
     "static/js/2.72be2304.chunk.js",
-    "static/css/main.f521aa33.chunk.css",
-    "static/js/main.4af59895.chunk.js"
+    "static/css/main.68361671.chunk.css",
+    "static/js/main.8a75ac1d.chunk.js"
   ]
 }
