@@ -21,6 +21,7 @@ export default function VideoPlayer() {
 
   return (
     <div>
+    <h1>Video</h1>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -28,21 +29,20 @@ export default function VideoPlayer() {
         contentLabel="Example Modal"
       >
         <div className="container-fluid">
-        <span style={{position:"absolute",right:"0px",padding:"5px", cursor:"pointer"}} onClick={closeModal}>❌</span>
+        <p className="close-btn" onClick={closeModal}>x</p>
         <div className="watchScreen__player">
           <iframe
             title={"Video"}
             src={`https://www.youtube.com/embed/${trailerKey}`}
             frameBorder={0}
             allowFullScreen
-            width={"700px"}
-            height={"500px"}
+            width={"100%"}
+            height={"100%"}
           ></iframe>
         
         </div>
       </div>
       </Modal>
-      
     </div>
   );
 }

@@ -455,8 +455,27 @@ p.footer-btn {
   border-radius: 5px;
   margin-top: 25px;
 }
-
-
+.watchScreen__player{
+  width: 60vw;
+  height: 70vh;
+}
+.close-btn{
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #fff;
+  top: 0;
+  font-size: 25px;
+  font-weight: 800;
+}
+.ReactModal__Overlay{
+  background-color: rgba(0, 0, 0, 0.904) !important;
+}
+.ReactModal__Content{
+border:0.2px solid #4e4e4e !important;
+box-shadow: 1px 2px 15px #7a7a7a73;
+background:none !important;  
+}
 /* For Mobile Device  */
 
 @media only screen  and (max-width:520px){
@@ -478,5 +497,16 @@ p.footer-btn {
   padding: 2px 10px;
   width: max-content;
 }
-  
+.watchScreen__player{
+  width: 100vw;
+  height: 30vh;
+}
+.close-btn{
+  position: absolute;
+  right: 40px;
+  top: 0px;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 800;
+}
 }

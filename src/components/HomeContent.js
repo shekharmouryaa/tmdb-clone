@@ -7,18 +7,24 @@ import WhatsPopulars from "./WhatsPopulars";
 export default function HomeContent() {
   // const currenttext = useStore((state) => state.currenttext);
   // const setCurrenttext = useStore((state) => state.setCurrenttext);
-  const populars = useStore((state) => state.populars)
+  const populars = useStore((state) => state.populars);
 
-  const backgroundImage = populars.map(img => img.backdrop_path)[Math.floor(Math.random()*populars.length)]
+  const backgroundImage = populars.map((img) => img.backdrop_path)[
+    Math.floor(Math.random() * populars.length)
+  ];
   console.log(backgroundImage);
   const handleSubmit = (e) => e.preventDefault();
   return (
     <div>
-      <section className="inner_content banner"
-      style={{backgroundImage: `linear-gradient(to right,
+      <div
+        className="inner_content banner"
+        style={{
+          backgroundImage: `linear-gradient(to right,
       rgba(3, 40, 68, 0.955),
       rgba(16, 67, 163, 0.438)),
-    url("https://image.tmdb.org/t/p/original${backgroundImage}")`}}>
+    url("https://image.tmdb.org/t/p/original${backgroundImage}")`,
+        }}
+      >
         <div className="column_wrapper">
           <div className="content_wrapper wrap">
             <div className="title">
@@ -48,7 +54,7 @@ export default function HomeContent() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
       <WhatsPopulars />
       <FreeToWatch />
       <Trending />

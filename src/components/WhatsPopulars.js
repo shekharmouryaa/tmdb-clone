@@ -5,17 +5,21 @@ import {
   getOnRent,
   getPopularTvShows,
   getInTheaters,
+  getTrailer,
 } from "../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
 import LoadingSkeleton from "./LoadingSkeleton";
+import VideoPlayer from "./VideoPlayer"
 
 export default function WhatsPopulars() {
   const setLoading = useStore((state) => state.setLoading);
   const pagenumber = useStore((state) => state.pagenumber);
   const populars = useStore((state) => state.populars);
   const setPopulars = useStore((state) => state.setPopulars);
+  const setTrailerKey = useStore((state) => state.setTrailerKey);
+  const openModal = useStore((state) => state.openModal);
 
   const [active, setActive] = useState("");
 
@@ -44,7 +48,10 @@ export default function WhatsPopulars() {
     getInTheaters(pagenumber).then((tv) => setPopulars(tv.data.results));
     setActive("theater");
   };
-  console.log("populars", populars);
+  const showTrailer = (id) => {
+    getTrailer(id).then((key) => setTrailerKey(key));
+    openModal();
+  };
   return (
     <>
       {
@@ -88,8 +95,10 @@ export default function WhatsPopulars() {
             {populars.length
               ? populars.sort().map((moviesobject, i) => (
                   <>
-                    <div className="vertical-card card text-white m-2" key={i}>
-                      <div>
+                    <div className="vertical-card card text-white m-2" 
+                    key={i}
+                    >
+                      <div onClick={() => showTrailer(moviesobject.id)}>
                         <img
                           className="movie-card img-fluid"
                           src={`https://image.tmdb.org/t/p/original${moviesobject.poster_path}`}
@@ -130,6 +139,7 @@ export default function WhatsPopulars() {
               <LoadingSkeleton/>
               </div>}
           </div>
+          <VideoPlayer/>
         </div>
       }
     </>

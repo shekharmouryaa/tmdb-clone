@@ -9,15 +9,13 @@ import LoadingSkeleton from "./LoadingSkeleton";
 export default function FreeToWatch() {
   const setLoading = useStore((state) => state.setLoading);
   const pagenumber = useStore((state) => state.pagenumber);
-
-  const topRated = useStore((state) => state.topRated);
-  const settopRated = useStore((state) => state.settopRated);
-
+  const freeContent = useStore((state) => state.freeContent);
+  const setFreeContent = useStore((state) => state.setFreeContent);
   const [active, setActive] = useState("");
 
   useEffect(() => {
     getFreeMovies(pagenumber).then((movies) =>
-      settopRated(topRated.concat(movies.data.results))
+    setFreeContent(movies.data.results)
     );
     setLoading();
     setActive("movies");
@@ -25,11 +23,11 @@ export default function FreeToWatch() {
   }, [pagenumber]);
 
   const getMoviesData = () => {
-    getFreeMovies(pagenumber).then((tv) => settopRated(tv.data.results));
+    getFreeMovies(pagenumber).then((mov) => setFreeContent(mov.data.results));
     setActive("movies");
   };
   const getTvData = () => {
-    getFreeTvShow(pagenumber).then((tv) => settopRated(tv.data.results));
+    getFreeTvShow(pagenumber).then((tv) => setFreeContent(tv.data.results));
     setActive("tv");
   };
 
@@ -58,8 +56,8 @@ export default function FreeToWatch() {
             </div>
           </div>
           <div className="card-horizontal scroller_wrap should_fade">
-            {topRated.length
-              ? topRated.sort().map((moviesobject, i) => (
+            {freeContent.length
+              ? freeContent.sort().map((moviesobject, i) => (
                   <>
                     <div className="vertical-card card text-white m-2" key={i}>
                       <div>
