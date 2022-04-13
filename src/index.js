@@ -6,7 +6,7 @@ import MainRoutes from './Router/Routes';
 import "./App.css";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter  basename='/tmdb-clone'>
     <MainRoutes/>
   </BrowserRouter>,
   document.getElementById('root')
