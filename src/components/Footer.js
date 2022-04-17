@@ -5,10 +5,12 @@ export default function Footer() {
     <footer className="container-fluid">
       <div className="footer">
         <div className="footer-items ">
-          <img width="100px" 
-          src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" 
-          alt="logo" />
-          <p className='footer-btn'>join the community</p>
+          <img
+            width="100px"
+            src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
+            alt="logo"
+          />
+          <p className="footer-btn">join the community</p>
         </div>
         <div className="footer-items">
           <h3>COMMUNITY</h3>
@@ -31,6 +33,9 @@ export default function Footer() {
           <p> API </p>
           <p> System Status </p>
         </div>
+      </div>
+      <div className="copyright">
+        <sapn >Copyright @ 2022</sapn>
       </div>
     </footer>
   );

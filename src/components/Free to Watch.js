@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useStore from "../Store/store";
-import { getFreeTvShow, getFreeMovies } from "../API/api";
+import { getFreeTvShow, getFreeMovies, getTrailer } from "../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
@@ -11,6 +11,8 @@ export default function FreeToWatch() {
   const pagenumber = useStore((state) => state.pagenumber);
   const freeContent = useStore((state) => state.freeContent);
   const setFreeContent = useStore((state) => state.setFreeContent);
+  const setTrailerKey = useStore((state) => state.setTrailerKey);
+  const openModal = useStore((state) => state.openModal);
   const [active, setActive] = useState("");
 
   useEffect(() => {
@@ -31,6 +33,10 @@ export default function FreeToWatch() {
     setActive("tv");
   };
 
+  const showTrailer = (id) => {
+    getTrailer(id).then((key) => setTrailerKey(key));
+    openModal();
+  };
   return (
     <>
       {
@@ -60,7 +66,7 @@ export default function FreeToWatch() {
               ? freeContent.sort().map((moviesobject, i) => (
                   <>
                     <div className="vertical-card card text-white m-2" key={i}>
-                      <div>
+                      <div onClick={()=>showTrailer(moviesobject.id)}>
                         <img
                           className="movie-card img-fluid"
                           src={`https://image.tmdb.org/t/p/original${moviesobject.poster_path}`}
