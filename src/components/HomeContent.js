@@ -12,24 +12,23 @@ export default function HomeContent() {
   const backgroundImage = populars.map((img) => img.backdrop_path)[
     Math.floor(Math.random() * populars.length)
   ];
-  console.log(backgroundImage);
+  
   const handleSubmit = (e) => e.preventDefault();
   return (
-    <div>
+    <div className="page-layout container-fluid ">
       <div
         className="inner_content banner"
         style={{
           backgroundImage: `linear-gradient(to right,
-      rgba(3, 40, 68, 0.955),
-      rgba(16, 67, 163, 0.438)),
+            rgba(3, 84, 114, 0.884),rgba(4, 88, 116, 0.795)),
     url("https://image.tmdb.org/t/p/original${backgroundImage}")`,
         }}
       >
         <div className="column_wrapper">
           <div className="content_wrapper wrap">
             <div className="title">
-              <h2 style={{ fontSize: "48px", fontWeight: "600" }}>Welcome.</h2>
-              <h3 style={{ fontSize: "32px", fontWeight: "600" }}>
+              <h2>Welcome.</h2>
+              <h3>
                 Millions of movies, TV shows and people to discover. Explore
                 now.
               </h3>

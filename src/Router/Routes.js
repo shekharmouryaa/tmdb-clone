@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Favouritelist from "../components/Favouritelist";
 import Footer from "../components/Footer";
 import HomeContent from "../components/HomeContent";
+import { MediaDetails } from "../components/MediaDetails";
 import Navbar from "../components/Navbar";
 import SignUp from "../components/SignUp";
 
@@ -14,6 +15,7 @@ export default function MainRoutes() {
       <Route path="/" element={<HomeContent />} />
       <Route path="/favouritelist" element={<Favouritelist />} />
       <Route path="/signup" element={<SignUp/>} />
+      <Route path="/details" element={<MediaDetails/>} />
     </Routes>
     <Footer/>
     </>

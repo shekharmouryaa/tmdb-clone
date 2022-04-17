@@ -12,20 +12,20 @@ import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
 import LoadingSkeleton from "./LoadingSkeleton";
 import VideoPlayer from "./VideoPlayer"
+import { Link } from "react-router-dom";
 
 export default function WhatsPopulars() {
   const setLoading = useStore((state) => state.setLoading);
   const pagenumber = useStore((state) => state.pagenumber);
   const populars = useStore((state) => state.populars);
   const setPopulars = useStore((state) => state.setPopulars);
-  const setTrailerKey = useStore((state) => state.setTrailerKey);
-  const openModal = useStore((state) => state.openModal);
+  const setMediaId = useStore((state) => state.setMediaId);
 
   const [active, setActive] = useState("");
 
   useEffect(() => {
     getPopularMovies(pagenumber).then((movies) =>
-      setPopulars(populars.concat(movies.data.results))
+      setPopulars(movies.data.results)
     );
     setLoading();
     setActive("Streaming");
@@ -33,7 +33,7 @@ export default function WhatsPopulars() {
   }, [pagenumber]);
 
   const getMoviesData = () => {
-    getPopularMovies(pagenumber).then((tv) => setPopulars(tv.data.results));
+    getPopularMovies(pagenumber).then((mov) => setPopulars(mov.data.results));
     setActive("Streaming");
   };
   const getTvData = () => {
@@ -41,26 +41,25 @@ export default function WhatsPopulars() {
     setActive("tv");
   };
   const getRentData = () => {
-    getOnRent(pagenumber).then((tv) => setPopulars(tv.data.results));
+    getOnRent(pagenumber).then((items) => setPopulars(items.data.results));
     setActive("rent");
   };
   const getInTheatersData = () => {
-    getInTheaters(pagenumber).then((tv) => setPopulars(tv.data.results));
+    getInTheaters(pagenumber).then((mov) => setPopulars(mov.data.results));
     setActive("theater");
   };
-  const showTrailer = (id) => {
-    getTrailer(id).then((key) => setTrailerKey(key));
-    openModal();
+  const showMediaDetails = (id) => {
+    setMediaId(id)
   };
   return (
     <>
       {
-        <div className="container-fluid main-content">
+        <div className="container-fluid main-content ">
           <div className="column_header">
             <div className="HeadingContainer">
               <span className="section-title">What's Popular</span>
             </div>
-            <div className="selector_wrapper ">
+            <div className="selector_wrapper  ">
               <div
                 className={`anchor ${
                   active === "Streaming" ? "selected" : ""
@@ -91,19 +90,20 @@ export default function WhatsPopulars() {
               </div>
             </div>
           </div>
-          <div className="card-horizontal scroller_wrap should_fade">
+          <div className="card-horizontal scroller_wrap ">
             {populars.length
               ? populars.sort().map((moviesobject, i) => (
                   <>
                     <div className="vertical-card card text-white m-2" 
                     key={i}
                     >
-                      <div onClick={() => showTrailer(moviesobject.id)}>
-                        <img
+                      <div onClick={() => showMediaDetails(moviesobject.id)}>
+                      <Link to="/details"><img
                           className="movie-card img-fluid"
                           src={`https://image.tmdb.org/t/p/original${moviesobject.poster_path}`}
                           alt=""
                         />
+                      </Link>
                       </div>
                       <div className="content-details">
                         <span className="circular-progress-bar">
