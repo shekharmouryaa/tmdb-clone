@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import useStore from "../Store/store";
-import { getFreeTvShow, getFreeMovies, getTrailer } from "../API/api";
+import { getFreeTvShow, getFreeMovies } from "../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
 import LoadingSkeleton from "./LoadingSkeleton";
+import { useNavigate } from "react-router-dom";
 
 export default function FreeToWatch() {
   const setLoading = useStore((state) => state.setLoading);
   const pagenumber = useStore((state) => state.pagenumber);
   const freeContent = useStore((state) => state.freeContent);
   const setFreeContent = useStore((state) => state.setFreeContent);
-  const setTrailerKey = useStore((state) => state.setTrailerKey);
-  const openModal = useStore((state) => state.openModal);
   const [active, setActive] = useState("");
+  const navigate = useNavigate();
+  const setMediaId = useStore((state) => state.setMediaId);
 
   useEffect(() => {
     getFreeMovies(pagenumber).then((movies) =>
@@ -32,11 +33,12 @@ export default function FreeToWatch() {
     getFreeTvShow(pagenumber).then((tv) => setFreeContent(tv.data.results));
     setActive("tv");
   };
-
-  const showTrailer = (id) => {
-    getTrailer(id).then((key) => setTrailerKey(key));
-    openModal();
+  const showMediaDetails = (id) => {
+    setMediaId(id)
+    localStorage.setItem('movieid',id);
+    navigate("/details")
   };
+
   return (
     <>
       {
@@ -64,9 +66,9 @@ export default function FreeToWatch() {
           <div className="card-horizontal scroller_wrap should_fade">
             {freeContent.length
               ? freeContent.sort().map((moviesobject, i) => (
-                  <>
-                    <div className="vertical-card card text-white m-2" key={i}>
-                      <div onClick={()=>showTrailer(moviesobject.id)}>
+                  <div key={i}>
+                    <div className="vertical-card card text-white m-2" >
+                      <div onClick={()=>showMediaDetails(moviesobject.id)}>
                         <img
                           className="movie-card img-fluid"
                           src={`https://image.tmdb.org/t/p/original${moviesobject.poster_path}`}
@@ -101,7 +103,7 @@ export default function FreeToWatch() {
                         </div>
                       </div>
                     </div>
-                  </>
+                  </div>
                 ))
               :<div style={{ display: "flex"}}>
               <LoadingSkeleton/>

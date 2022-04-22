@@ -65,9 +65,9 @@ export default function Trending() {
           <div className="card-horizontal scroller_wrap should_fade">
             {trending.length ? (
               trending.sort().map((moviesobject, i) => (
-                <>
-                  <div className="vertical-card card text-white m-2" key={i}>
-                  <div onClick={()=>showTrailer(moviesobject.id)}>
+                <div  key={i}>
+                  <div className="vertical-card card text-white m-2">
+                    <div onClick={()=>showTrailer(moviesobject.id)}>
                       <img
                           className="movie-card img-fluid"
                           src={`https://image.tmdb.org/t/p/original${moviesobject.poster_path}`}
@@ -102,7 +102,7 @@ export default function Trending() {
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               ))
             ) : (
               <div style={{ display: "flex" }}>

@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import useStore from "../Store/store";
-import {
-  getPopularMovies,
-  getOnRent,
-  getPopularTvShows,
-  getInTheaters,
-  getTrailer,
-} from "../API/api";
+import {  getPopularMovies,  getOnRent,  getPopularTvShows,  getInTheaters,} from "../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
 import LoadingSkeleton from "./LoadingSkeleton";
 import VideoPlayer from "./VideoPlayer"
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import { useNavigate  } from "react-router-dom";
 
 export default function WhatsPopulars() {
   const setLoading = useStore((state) => state.setLoading);
@@ -22,6 +17,7 @@ export default function WhatsPopulars() {
   const setMediaId = useStore((state) => state.setMediaId);
 
   const [active, setActive] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPopularMovies(pagenumber).then((movies) =>
@@ -50,6 +46,8 @@ export default function WhatsPopulars() {
   };
   const showMediaDetails = (id) => {
     setMediaId(id)
+    localStorage.setItem('movieid',id);
+    navigate("/details")
   };
   return (
     <>
@@ -93,17 +91,16 @@ export default function WhatsPopulars() {
           <div className="card-horizontal scroller_wrap ">
             {populars.length
               ? populars.sort().map((moviesobject, i) => (
-                  <>
+                  <div key={i} >
                     <div className="vertical-card card text-white m-2" 
-                    key={i}
+                    
                     >
                       <div onClick={() => showMediaDetails(moviesobject.id)}>
-                      <Link to="/details"><img
+                      <img
                           className="movie-card img-fluid"
                           src={`https://image.tmdb.org/t/p/original${moviesobject.poster_path}`}
                           alt=""
                         />
-                      </Link>
                       </div>
                       <div className="content-details">
                         <span className="circular-progress-bar">
@@ -133,7 +130,7 @@ export default function WhatsPopulars() {
                         </div>
                       </div>
                     </div>
-                  </>
+                  </div>
                 ))
               : <div style={{ display: "flex"}}>
               <LoadingSkeleton/>

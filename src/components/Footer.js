@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="copyright">
-        <sapn >Copyright @ 2022</sapn>
+        <span >Copyright @ 2022</span>
       </div>
     </footer>
   );
