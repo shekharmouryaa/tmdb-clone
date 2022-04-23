@@ -295,6 +295,9 @@ header {
 .movie-card {
   box-shadow: 3px 3px 10px 0px #4b4b4b;
   user-select: none;
+  height: 225px;
+  width: 180px;
+  background-color: #01b4e4;
 }
 
 .circular-progress-bar {

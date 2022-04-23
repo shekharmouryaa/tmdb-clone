@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import useStore from "../Store/store";
-import {  getPopularMovies,  getOnRent,  getPopularTvShows,  getInTheaters,} from "../API/api";
+import { getPopularMovies, getOnRent, getPopularTvShows, getInTheaters, } from "../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
-import {} from "react/cjs/react.production.min";
+import { } from "react/cjs/react.production.min";
 import LoadingSkeleton from "./LoadingSkeleton";
+import image from '../placeholder.png'
 import VideoPlayer from "./VideoPlayer"
 import { useNavigate } from "react-router-dom";
-// import { useNavigate  } from "react-router-dom";
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 export default function WhatsPopulars() {
   const setLoading = useStore((state) => state.setLoading);
@@ -46,7 +47,7 @@ export default function WhatsPopulars() {
   };
   const showMediaDetails = (id) => {
     setMediaId(id)
-    localStorage.setItem('movieid',id);
+    localStorage.setItem('movieid', id);
     navigate("/details")
   };
   return (
@@ -59,9 +60,8 @@ export default function WhatsPopulars() {
             </div>
             <div className="selector_wrapper  ">
               <div
-                className={`anchor ${
-                  active === "Streaming" ? "selected" : ""
-                }`}
+                className={`anchor ${active === "Streaming" ? "selected" : ""
+                  }`}
                 onClick={() => getMoviesData()}
               >
                 Streaming
@@ -91,52 +91,55 @@ export default function WhatsPopulars() {
           <div className="card-horizontal scroller_wrap ">
             {populars.length
               ? populars.sort().map((moviesobject, i) => (
-                  <div key={i} >
-                    <div className="vertical-card card text-white m-2" 
-                    
-                    >
-                      <div onClick={() => showMediaDetails(moviesobject.id)}>
-                      <img
-                          className="movie-card img-fluid"
-                          src={`https://image.tmdb.org/t/p/original${moviesobject.poster_path}`}
-                          alt=""
+                <div key={i} >
+                  <div className="vertical-card card text-white m-2"
+
+                  >
+                    <div onClick={() => showMediaDetails(moviesobject.id)}>
+                      <LazyLoadImage
+                        className="movie-card img-fluid"
+                        width={150}
+                        height={225}
+                        alt={"poster"}
+                        effect="blur"
+                        src={moviesobject.poster_path ?  `https://image.tmdb.org/t/p/original${moviesobject.poster_path}`: image}
                         />
+                    </div>
+                    <div className="content-details">
+                      <span className="circular-progress-bar">
+                        <CircularProgressBar
+                          percent={moviesobject.vote_average * 10}
+                          linearGradient={["#18cdb5", "#1fb76d"]}
+                          colorSlice={"#081c22"}
+                          colorCircle={"#081c22"}
+                          fontColor={"#fff"}
+                          fontSize={"1.8rem"}
+                          fontWeight={400}
+                          size={40}
+                          cut={0}
+                          rotation={-90}
+                          opacity={10}
+                          fill={"#032541"}
+                          unit={"%"}
+                          textPosition={"0.35em"}
+                        />
+                      </span>
+                      <div className="item-title">
+                        {moviesobject.name || moviesobject.title}
                       </div>
-                      <div className="content-details">
-                        <span className="circular-progress-bar">
-                          <CircularProgressBar
-                            percent={moviesobject.vote_average * 10}
-                            linearGradient={["#18cdb5", "#1fb76d"]}
-                            colorSlice={"#081c22"}
-                            colorCircle={"#081c22"}
-                            fontColor={"#fff"}
-                            fontSize={"1.8rem"}
-                            fontWeight={400}
-                            size={40}
-                            cut={0}
-                            rotation={-90}
-                            opacity={10}
-                            fill={"#032541"}
-                            unit={"%"}
-                            textPosition={"0.35em"}
-                          />
-                        </span>
-                        <div className="item-title">
-                          {moviesobject.name || moviesobject.title}
-                        </div>
-                        <div className="item-score">
-                          {moviesobject.release_date ||
-                            moviesobject.first_air_date}
-                        </div>
+                      <div className="item-score">
+                        {moviesobject.release_date ||
+                          moviesobject.first_air_date}
                       </div>
                     </div>
                   </div>
-                ))
-              : <div style={{ display: "flex"}}>
-              <LoadingSkeleton/>
+                </div>
+              ))
+              : <div style={{ display: "flex" }}>
+                <LoadingSkeleton />
               </div>}
           </div>
-          <VideoPlayer/>
+          <VideoPlayer />
         </div>
       }
     </>

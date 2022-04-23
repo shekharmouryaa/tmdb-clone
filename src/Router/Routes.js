@@ -8,16 +8,21 @@ import Navbar from "../components/Navbar";
 import SignUp from "../components/SignUp";
 
 export default function MainRoutes() {
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <>
-    <Navbar />
-    <Routes>
-      <Route path="/" element={<HomeContent />} />
-      <Route path="/favouritelist" element={<Favouritelist />} />
-      <Route path="/signup" element={<SignUp/>} />
-      <Route path="/details" element={<MediaDetails/>} />
-    </Routes>
-    <Footer/>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomeContent />} />
+        <Route path="/favouritelist" element={<Favouritelist />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/details" element={<MediaDetails />} />
+      </Routes>
+      <Footer />
     </>
   );
 }

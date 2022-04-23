@@ -10,7 +10,9 @@ export default function LoadingSkeleton() {
             <Skeleton duration={2} direction="ltr" height={225} width={150} />
           </span>
           <span >
-            <Skeleton duration={2} direction="ltr" count={3}/>
+          <Skeleton width={30} height={30} duration={2} direction="ltr" circle={true} count={1}/>
+            <Skeleton duration={2} direction="ltr" count={2}/>
+            
           </span>
         </div>
       ))}

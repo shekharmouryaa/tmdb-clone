@@ -6,6 +6,9 @@ import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
 import LoadingSkeleton from "./LoadingSkeleton";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import image from '../placeholder.png'
+
 
 export default function FreeToWatch() {
   const setLoading = useStore((state) => state.setLoading);
@@ -69,10 +72,13 @@ export default function FreeToWatch() {
                   <div key={i}>
                     <div className="vertical-card card text-white m-2" >
                       <div onClick={()=>showMediaDetails(moviesobject.id)}>
-                        <img
-                          className="movie-card img-fluid"
-                          src={`https://image.tmdb.org/t/p/original${moviesobject.poster_path}`}
-                          alt=""
+                      <LazyLoadImage
+                        className="movie-card img-fluid"
+                        width={150}
+                        height={225}
+                        alt={"poster"}
+                        effect="blur"
+                        src={moviesobject.poster_path ?  `https://image.tmdb.org/t/p/original${moviesobject.poster_path}`: image}
                         />
                       </div>
                       <div className="content-details">
