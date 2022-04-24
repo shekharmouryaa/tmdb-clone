@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Favouritelist from "../components/Favouritelist";
-import Footer from "../components/Footer";
-import HomeContent from "../components/HomeContent";
-import { MediaDetails } from "../components/MediaDetails";
-import Navbar from "../components/Navbar";
-import SignUp from "../components/SignUp";
+import Favouritelist from "../components/Users/Favouritelist";
+import Footer from "../components/Footer/Footer";
+import HomeContent from "../components/Banner/HomeContent";
+import { MediaDetails } from "../Utilty/MediaDetails";
+import Navbar from "../components/Navbar/Navbar";
+import SignUp from "../components/Users/SignUp";
 
 export default function MainRoutes() {
 

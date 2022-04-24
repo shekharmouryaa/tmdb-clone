@@ -1,8 +1,8 @@
 import React from "react";
-import useStore from "../Store/store";
-import FreeToWatch from "./Free to Watch";
-import Trending from "./Trending";
-import WhatsPopulars from "./WhatsPopulars";
+import useStore from "../../Store/store";
+import FreeToWatch from "../FreeToWatch/Free to Watch";
+import Trending from "../Trending/Trending";
+import WhatsPopulars from "../MostPopulars/WhatsPopulars";
 
 export default function HomeContent() {
   // const currenttext = useStore((state) => state.currenttext);

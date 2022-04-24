@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import useStore from "../Store/store";
-import { getPopularMovies, getOnRent, getPopularTvShows, getInTheaters, } from "../API/api";
+import useStore from "../../Store/store";
+import { getPopularMovies, getOnRent, getPopularTvShows, getInTheaters, } from "../../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import { } from "react/cjs/react.production.min";
-import LoadingSkeleton from "./LoadingSkeleton";
-import image from '../placeholder.png'
-import VideoPlayer from "./VideoPlayer"
+import LoadingSkeleton from "../../Utilty/LoadingSkeleton";
+import image from '../../placeholder.png';
+import VideoPlayer from "../../Utilty/VideoPlayer";
 import { useNavigate } from "react-router-dom";
-import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function WhatsPopulars() {
   const setLoading = useStore((state) => state.setLoading);

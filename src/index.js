@@ -11,5 +11,3 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root')
 );
-
-// return data.data.results.map(key => key.name === "Official Trailer")[0].key

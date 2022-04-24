@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import useStore from "../Store/store";
-import { getTrailer, getTrendingDay, getTrendingWeek } from "../API/api";
+import useStore from "../../Store/store";
+import { getTrailer, getTrendingDay, getTrendingWeek } from "../../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
-import LoadingSkeleton from "./LoadingSkeleton";
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import image from '../placeholder.png'
+import LoadingSkeleton from "../../Utilty/LoadingSkeleton";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import image from '../../placeholder.png';
 
 
 

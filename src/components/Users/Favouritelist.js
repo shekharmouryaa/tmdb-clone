@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import React from 'react'
-import useStore from "../Store/store";
+import useStore from "../../Store/store";
 
 export default function Favouritelist() {
 const genres = useStore(state => state.genres)
@@ -22,11 +22,11 @@ const setgenresid = useStore(state => state.setgenresid)
         setgenresid(genredID)
         console.log("localdata",localdata);
         console.log("genredID",genredID);
-        localdata.forEach((movieobject) => {
-            if (!temparray.includes(movieobject.genre_ids[0])) {
-                temparray.push(movieobject.genre_ids[0])
-            }
-        });
+        // localdata.forEach((movieobject) => {
+        //     if (!temparray.includes(movieobject.genres[0])) {
+        //         temparray.push(movieobject.genres[0])
+        //     }
+        // });
         console.log("temparray",temparray);
         setgenres(["All Genres"].concat(temparray))
         console.log("genres",genres);
@@ -59,14 +59,14 @@ const setgenresid = useStore(state => state.setgenresid)
         temp.sort((a, b) => a.vote_average - b.vote_average)
         setnewmovies(temp)
     }
-    const deleteMovie = (id) => {
-        let newarray = [];
-        newarray = newmovies.filter((movieobject) => movieobject.id !== id)
-        setnewmovies(newarray)
-        let genres = newarray.map((e) => e.genre_ids[0]).flat().filter((value, index, self)=> self.indexOf(value) === index);
-        setgenres(["All Genres"].concat(genres))
-        localStorage.setItem('addedmov', JSON.stringify(newarray))       
-    }
+    // const deleteMovie = (id) => {
+    //     let newarray = [];
+    //     newarray = newmovies.filter((movieobject) => movieobject.id !== id)
+    //     setnewmovies(newarray)
+    //     let genres = newarray.map((e) => e.genre_ids[0]).flat().filter((value, index, self)=> self.indexOf(value) === index);
+    //     setgenres(["All Genres"].concat(genres))
+    //     localStorage.setItem('addedmov', JSON.stringify(newarray))       
+    // }
 
   return (
     <div>
@@ -102,9 +102,9 @@ const setgenresid = useStore(state => state.setgenresid)
                                             filtermovies.map((movieobject,i) => (
                                                 <tr key={i}>
                                                     <td> <img className="img-thumb" src={`https://image.tmdb.org/t/p/original${movieobject.backdrop_path}`} alt='thumb' />{movieobject.original_title}</td>
-                                                    <td>{movieobject.genre_ids[0]}</td>
+                                                    {/* <td>{movieobject.genre_ids[0]}</td> */}
                                                     <td>{movieobject.vote_average}</td>
-                                                    <td><button type="button" className="btn btn-danger" onClick={() => deleteMovie(movieobject.id)}>Delete</button></td>
+                                                    <td><button type="button" className="btn btn-danger" >Delete</button></td>
                                                 </tr>
                                             )): <tr>No Movie Added to list</tr>
                                         }

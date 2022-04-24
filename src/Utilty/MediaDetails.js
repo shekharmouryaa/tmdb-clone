@@ -11,9 +11,6 @@ import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import { AiOutlineUnorderedList, AiFillStar } from "react-icons/ai";
 import { MdFavorite,MdBookmark } from "react-icons/md";
 
-
-
-
 export const MediaDetails = () => {
   const mediaId = localStorage.getItem("movieid");
   const mediaDetails = useStore((state) => state.mediaDetails);
@@ -21,6 +18,7 @@ export const MediaDetails = () => {
   const setTrailerKey = useStore((state) => state.setTrailerKey);
   const openModal = useStore((state) => state.openModal);
   const [loading, setLoading] = useState(false)
+  const [favouritelist, setFavouritelist] = useState([])
 
   useEffect(() => {
     if (mediaId) {
@@ -35,6 +33,22 @@ export const MediaDetails = () => {
     getTrailer(id).then((key) => setTrailerKey(key));
     openModal();
   };
+
+  const addtofavlist = (fav) => {
+    let oldData = JSON.parse(localStorage.getItem("addedmov") || "[]");
+    if (favouritelist.includes(fav.id)) {
+        oldData = oldData.filter((m) => m.id !== fav.id);
+    } else {
+        oldData.push(fav);
+    }
+    checkfavouritelist();
+    localStorage.setItem("addedmov", JSON.stringify(oldData));
+};
+let checkfavouritelist = () => {
+  let oldData = JSON.parse(localStorage.getItem("addedmov") || "[]");
+  let tempArray = oldData.map((mymovies) => mymovies.id);
+  setFavouritelist(tempArray);
+};
   let Background;
   if (mediaDetails) {
     Background = {
@@ -99,7 +113,7 @@ export const MediaDetails = () => {
                     <span className="score">User Score</span>
                     <div className="user-account">
                       <span className="user-action"><AiOutlineUnorderedList/></span>
-                      <span className="user-action"><MdFavorite/></span>
+                      <span className="user-action" onClick={()=>addtofavlist(mediaDetails)}><MdFavorite/></span>
                       <span className="user-action"><MdBookmark/></span>
                       <span className="user-action"><AiFillStar/></span>
                     </div>

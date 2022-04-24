@@ -73,7 +73,7 @@ body {
   text-decoration: none;
   color: #ffffff;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   margin-right: 15px;
   padding: 0 10px;
 }
@@ -496,8 +496,6 @@ p.footer-btn {
   background-color: #81919e52;
 }
 
-
-
 /*  Media OverView Start*/
 
 .backdrop_poster {
@@ -506,7 +504,6 @@ p.footer-btn {
   position: relative;
   z-index: 1;
   background-size: cover !important;
-  /* filter: contrast(90%) brightness(50%); */
 }
 
 .media-content {
@@ -514,7 +511,9 @@ p.footer-btn {
   flex-direction: row;
   justify-content: center;
 }
-
+.circular-progressBar{
+  margin-left: 10px;
+}
 .mediaName {
   font-size: 35px;
   font-weight: 700;
@@ -559,9 +558,7 @@ p.footer-btn {
   background: #000;
   padding: 4px 0;
 }
-.circular-progressBar{
-  margin-left: 10px;
-}
+
 .user-section{
     display: flex;
     align-items: center;
@@ -580,9 +577,10 @@ p.footer-btn {
 .user-action{
     margin: 0 7px;
     padding: 7px;
-    background: #033f55;
+    background: #033232;
     border-radius: 25px;
     font-size: 25px;
+    cursor: pointer;
 }
 .overview-section, .production-section{
   font-size: 15px;

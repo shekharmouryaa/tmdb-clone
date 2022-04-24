@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import useStore from "../Store/store";
-import { getFreeTvShow, getFreeMovies } from "../API/api";
+import useStore from "../../Store/store";
+import { getFreeTvShow, getFreeMovies } from "../../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
-import LoadingSkeleton from "./LoadingSkeleton";
+import LoadingSkeleton from "../../Utilty/LoadingSkeleton";
 import { useNavigate } from "react-router-dom";
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import image from '../placeholder.png'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import image from '../../placeholder.png';
 
 
 export default function FreeToWatch() {
