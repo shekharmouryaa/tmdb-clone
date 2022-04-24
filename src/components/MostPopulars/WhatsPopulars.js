@@ -6,7 +6,6 @@ import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import { } from "react/cjs/react.production.min";
 import LoadingSkeleton from "../../Utilty/LoadingSkeleton";
 import image from '../../placeholder.png';
-import VideoPlayer from "../../Utilty/VideoPlayer";
 import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -139,7 +138,6 @@ export default function WhatsPopulars() {
                 <LoadingSkeleton />
               </div>}
           </div>
-          <VideoPlayer />
         </div>
       }
     </>

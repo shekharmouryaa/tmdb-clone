@@ -10,6 +10,7 @@ import VideoPlayer from "./VideoPlayer";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import { AiOutlineUnorderedList, AiFillStar } from "react-icons/ai";
 import { MdFavorite,MdBookmark } from "react-icons/md";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 export const MediaDetails = () => {
   const mediaId = localStorage.getItem("movieid");
@@ -71,7 +72,7 @@ let checkfavouritelist = () => {
                   alt=""
                 />
                 <div className="streaming-platform" onClick={() => showTrailer(mediaDetails.id)}>
-                  <img className="youtube-logo" src={logo} alt="logo" />Play Trailer</div>
+                  <img className="youtube-logo" src={logo} alt="logo" />Watch Trailer</div>
 
               </div>
             </div>
@@ -112,8 +113,8 @@ let checkfavouritelist = () => {
                     </div>
                     <span className="score">User Score</span>
                     <div className="user-account">
-                      <span className="user-action"><AiOutlineUnorderedList/></span>
                       <span className="user-action" onClick={()=>addtofavlist(mediaDetails)}><MdFavorite/></span>
+                      <span className="user-action"><AiOutlineUnorderedList/></span>
                       <span className="user-action"><MdBookmark/></span>
                       <span className="user-action"><AiFillStar/></span>
                     </div>
@@ -130,7 +131,7 @@ let checkfavouritelist = () => {
               </div>
             </div>
           </> :
-          <h1>"Loading.."</h1>
+          <LoadingSkeleton/>
         }
 
       </div>

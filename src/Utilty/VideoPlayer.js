@@ -25,7 +25,8 @@ export default function VideoPlayer() {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="Youtube Player"
+        ariaHideApp={false}
       >
         <div className="container-fluid">
         <p className="close-btn" onClick={closeModal}>x</p>

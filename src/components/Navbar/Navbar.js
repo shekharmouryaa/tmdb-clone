@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
 
@@ -40,9 +41,9 @@ export default function Navbar() {
             >
               EN
             </a>
-            <a to="/" className="link">
+            <Link to="/favouritelist" className="link">
               Login
-            </a>
+            </Link>
             <a to="/" className="link">
               Join TMDB
             </a>

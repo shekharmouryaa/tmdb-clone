@@ -20,18 +20,13 @@ const setgenresid = useStore(state => state.setgenresid)
         let localdata = JSON.parse(localStorage.getItem('addedmov') || '[]');
         let genredID = localdata.map((e) => e.genre_ids).flat().filter((value, index, self)=> self.indexOf(value) === index);;
         setgenresid(genredID)
-        console.log("localdata",localdata);
-        console.log("genredID",genredID);
         // localdata.forEach((movieobject) => {
         //     if (!temparray.includes(movieobject.genres[0])) {
         //         temparray.push(movieobject.genres[0])
         //     }
         // });
-        console.log("temparray",temparray);
         setgenres(["All Genres"].concat(temparray))
-        console.log("genres",genres);
         setnewmovies(localdata)
-        console.log("newmovies",newmovies);
         setLoading(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
@@ -42,7 +37,6 @@ const setgenresid = useStore(state => state.setgenresid)
         if (currentgenre !== "All Genres") {
                 filtermovies = newmovies.filter((movieobject) => movieobject.genre_ids[0] === currentgenre)
             }
-            console.log("All Genres filtermovies", filtermovies);
     }
 
     const activegenre =(genre) => {

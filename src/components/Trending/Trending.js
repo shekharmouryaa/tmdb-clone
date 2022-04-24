@@ -7,6 +7,7 @@ import {} from "react/cjs/react.production.min";
 import LoadingSkeleton from "../../Utilty/LoadingSkeleton";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import image from '../../placeholder.png';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -15,9 +16,10 @@ export default function Trending() {
   const pagenumber = useStore((state) => state.pagenumber);
   const trending = useStore((state) => state.trending);
   const setTrending = useStore((state) => state.setTrending);
-  const setTrailerKey = useStore((state) => state.setTrailerKey);
-  const openModal = useStore((state) => state.openModal);
+  const setMediaId = useStore((state) => state.setMediaId);
+  
   const [active, setActive] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTrendingDay(pagenumber).then((movies) =>
@@ -38,9 +40,10 @@ export default function Trending() {
     );
     setActive("week");
   };
-  const showTrailer = (id) => {
-    getTrailer(id).then((key) => setTrailerKey(key));
-    openModal();
+  const showMediaDetails = (id) => {
+    setMediaId(id)
+    localStorage.setItem('movieid', id);
+    navigate(`/details/${id}`)
   };
   return (
     <>
@@ -71,7 +74,7 @@ export default function Trending() {
               trending.sort().map((moviesobject, i) => (
                 <div  key={i}>
                   <div className="vertical-card card text-white m-2">
-                    <div onClick={()=>showTrailer(moviesobject.id)}>
+                  <div onClick={()=>showMediaDetails(moviesobject.id)}>
                     <LazyLoadImage
                         className="movie-card img-fluid"
                         width={150}
