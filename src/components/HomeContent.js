@@ -20,7 +20,7 @@ export default function HomeContent() {
         className="inner_content banner"
         style={{
           backgroundImage: `linear-gradient(to right,
-            rgba(3, 84, 114, 0.884),rgba(4, 88, 116, 0.795)),
+            rgba(3, 84, 114, 0.8),rgba(4, 88, 116, 0.7)),
     url("https://image.tmdb.org/t/p/original${backgroundImage}")`,
         }}
       >

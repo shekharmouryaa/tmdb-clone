@@ -8,6 +8,10 @@ import useStore from "../Store/store";
 import logo from '../youtube.svg'
 import VideoPlayer from "./VideoPlayer";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
+import { AiOutlineUnorderedList, AiFillStar } from "react-icons/ai";
+import { MdFavorite,MdBookmark } from "react-icons/md";
+
+
 
 
 export const MediaDetails = () => {
@@ -35,13 +39,13 @@ export const MediaDetails = () => {
   if (mediaDetails) {
     Background = {
       backgroundImage: `linear-gradient(to right,
-        rgba(3, 84, 114, 0.9),rgba(2, 66, 87, 0.7)),url(https://image.tmdb.org/t/p/original${mediaDetails.backdrop_path})`,
+        rgba(3, 84, 114, 0.9),rgba(2, 66, 87, 0.9)),url(https://image.tmdb.org/t/p/original${mediaDetails.backdrop_path})`,
     }
   }
   return (
-    <div className="container-fluid">
-      <span className="row backdrop_poster"
-        style={Background}></span>
+    <div style={Background} className="container-fluid backdrop_poster">
+      <span className="row "
+        ></span>
       <div className="media-content">
         {loading ?
           <>
@@ -81,8 +85,8 @@ export const MediaDetails = () => {
                       colorSlice={"#091c22"}
                       colorCircle={"#091c22"}
                       fontColor={"#fff"}
-                      fontSize={"1.8rem"}
                       fontWeight={400}
+                      fontSize={"1.5rem"}
                       size={60}
                       cut={0}
                       rotation={-90}
@@ -94,10 +98,10 @@ export const MediaDetails = () => {
                     </div>
                     <span className="score">User Score</span>
                     <div className="user-account">
-                      <span className="user-action">🤍</span>
-                      <span className="user-action">🤍</span>
-                      <span className="user-action">🤍</span>
-                      <span className="user-action">🤍</span>
+                      <span className="user-action"><AiOutlineUnorderedList/></span>
+                      <span className="user-action"><MdFavorite/></span>
+                      <span className="user-action"><MdBookmark/></span>
+                      <span className="user-action"><AiFillStar/></span>
                     </div>
 
               </div>
@@ -108,7 +112,7 @@ export const MediaDetails = () => {
               </div>
               <div className="production-section">
                <h5><b>Production By </b> </h5>
-                 <span>{mediaDetails.production_companies.map((e,i)=><span key={i}>{e.name}</span> )}</span>                
+                 <span>{mediaDetails.production_companies.map((e,i)=><span key={i}>{e.name},{" "}</span> )}</span>                
               </div>
             </div>
           </> :

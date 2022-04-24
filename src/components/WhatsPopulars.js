@@ -48,7 +48,7 @@ export default function WhatsPopulars() {
   const showMediaDetails = (id) => {
     setMediaId(id)
     localStorage.setItem('movieid', id);
-    navigate("/details")
+    navigate(`/details/${id}`)
   };
   return (
     <>

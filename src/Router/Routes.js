@@ -9,6 +9,8 @@ import SignUp from "../components/SignUp";
 
 export default function MainRoutes() {
 
+  
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -20,7 +22,7 @@ export default function MainRoutes() {
         <Route path="/" element={<HomeContent />} />
         <Route path="/favouritelist" element={<Favouritelist />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/details" element={<MediaDetails />} />
+        <Route path="/details/:id" element={<MediaDetails />} />
       </Routes>
       <Footer />
     </>
