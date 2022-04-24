@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/anchor-has-content */
@@ -12,54 +13,62 @@ export const MediaDetails = () => {
   const setMediaDetails = useStore((state) => state.setMediaDetails);
   const setTrailerKey = useStore((state) => state.setTrailerKey);
   const openModal = useStore((state) => state.openModal);
+  const[loading, setLoading] =  useState(false)
 
-  console.log("Media", mediaDetails);
   useEffect(() => {
-    getMediaDetails(mediaId).then((items) => {
-      setMediaDetails(items.data);
-  
-    });
-  }, []);
-
+     if (mediaId){
+      getMediaDetails(mediaId).then((items) => {
+        setMediaDetails(items.data);
+        setLoading(true)
+      });
+  }
+  }, [mediaId]);
+ 
   const showTrailer = (id) => {
     getTrailer(id).then((key) => setTrailerKey(key));
     openModal();
   };
-
+  let Background, backdropimage;
+  if(mediaDetails){
+     Background = {
+      backgroundImage:`linear-gradient(to right,
+        rgba(3, 84, 114, 0.5),rgba(4, 88, 116, 0.75)),url(https://image.tmdb.org/t/p/original${mediaDetails.backdrop_path})`,
+    }
+    backdropimage = {
+      backgroundImage:`url(https://image.tmdb.org/t/p/original${mediaDetails.backdrop_path})`
+    }
+  }
   return (
-    <div className="container-fluid wrap">
-      <div
-        className="row"
-        style={{
-          backgroundImage: `linear-gradient(to right, rgba(3, 10, 7, 0.82),rgba(4, 8, 6, 0.75))`,
-        }}
-      >
-        {mediaDetails.length ? 
+    <div className="container-fluid">
+      <span  className="row backdrop_poster"
+        style={Background}></span>
+      <div className="media-content">
+        {loading ? 
         <>
-          <div className="media-title col-12 info-section">
-            <h1>
-              {mediaDetails?.title}{" "}
-              <span className="release_date">
-                ({mediaDetails.release_date})
-              </span>{" "}
-            </h1>
-            <h3 style={{cursor:"pointer"}} onClick={() => showTrailer(mediaDetails.id)}>Watch Trailer</h3>
-          </div>
-
-        <div className="col-sm-3 poster-section">
+        <div className="poster-section">
           <div className="poster">
+          <span  
+          style={backdropimage}
+          className="row mobile-back-poster"></span>
             <img 
               className="img-fluid"
               src={`https://image.tmdb.org/t/p/original${mediaDetails.poster_path}`}
               alt=""
             />
+          <div className="streaming-platform"  onClick={() => showTrailer(mediaDetails.id)}>Play Trailer</div>
           </div>
-          <div className="streaming-platform">Watch Now</div>
         </div>
-        <div className="col-sm-9 info-section">
-          <div className="mdeia-genre-info">
-            {mediaDetails.genres.map((gen, i) => (
-              <span key={i}> '{gen.name}' </span>
+        <div className="info-section">
+        <div className="media-title ">
+            <h1 className="mediaName">
+              {mediaDetails?.title}{" "}<span className="release_date">
+                ({mediaDetails.release_date.substring( 0 , 4 )})
+              </span>
+            </h1>
+            <h3 style={{cursor:"pointer"}}>Watch Trailer</h3>
+          </div>
+          <div className="media-genre-info">
+            {mediaDetails.genres.map((gen, i) => (<span style={{marginLeft:"5px"}} key={i}>{gen.name}, </span>
             ))}
           </div>
 
@@ -71,8 +80,7 @@ export const MediaDetails = () => {
           </div>
         </div>
         </> : 
-         <h1>"Loading.."
-         </h1> 
+         <h1>"Loading.."</h1> 
         }
          
       </div>
