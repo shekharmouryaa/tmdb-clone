@@ -520,47 +520,30 @@ p.footer-btn {
   font-weight: 700;
   line-height: 40px;
 }
-
+.release-date{
+  font-weight: 400;
+  color: #afa7a7;
+}
 .media-genre-info {
   position: relative;
-}
-
-.media-genre-info span:before {
-  font-size: 1.1em;
-  line-height: 1;
-  content: '\2022';
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: -5px;
-  display: inline-flex;
-  align-content: center;
-  align-items: center;
-  z-index: -1;
-
-}
-
-.poster {
-  min-width: 300px;
-  min-height: 450px;
-  padding: 30px 25px 10px 25px;
-}
-
-.poster .img-fluid:hover {
-  filter: blur(5px);
-  transition: 0.5s ease-in-out;
+  font-weight: 400;
 }
 
 .poster-section {
-  max-width: 360px;
+  max-width: 300px;
+  min-width: 250px;
 }
 
+.poster {
+  min-width: 250px;
+  padding: 30px 25px 10px 25px;
+}
 .info-section {
-  font-size: 16px;
   color: #fff;
-  font-weight: 400;
-  padding: 25px 40px;
+  padding: 5px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .streaming-platform {
@@ -569,18 +552,64 @@ p.footer-btn {
   text-align: center;
   font-weight: 600;
   font-size: 18px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   box-sizing: border-box;
-  padding: 5px 0;
   margin-top: 10px;
-  border-radius: 2px;
-  background: #1c86ab;
+  border-radius: 5px;
+  background: #000;
+}
+.circular-progressBar{
+  margin-left: 10px;
+}
+.user-section{
+    display: flex;
+    align-items: center;
+    padding: 15px 0px 15px 0px;
+    font-size: 20px;
+    font-weight: 600;
+    width: 150px;
+    line-height: 20px;
+    position: relative;
+}
+.user-account{
+  display: flex;
+  flex-direction:row;
+  margin: 0 10px;
+}
+.user-action{
+    margin: 0 10px;
+    padding: 7px;
+    background: #033f55;
+    border-radius: 20px;
+    font-size: 15px;
+}
+.overview-section, .production-section{
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0px 0px 15px 0;
+}
+.youtube-logo{
+  width:30px;
+  margin:0 5px;
+}
+.tagline {
+  font-size: 14px;
+  font-style: italic;
+  color: #afa7a7;
 }
 
 .mobile-back-poster {
   display: none
 }
-
+.score {
+  padding: 0 5px;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+}
 /*  Media OverView End*/
 
 
