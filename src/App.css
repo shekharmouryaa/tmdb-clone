@@ -562,7 +562,9 @@ p.footer-btn {
   width: 40px;
   margin-top: -5px;
 }
-
+.red-icon{
+color:red;
+}
 .user-section {
   display: flex;
   align-items: center;

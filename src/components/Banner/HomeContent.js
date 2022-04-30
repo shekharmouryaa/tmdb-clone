@@ -5,6 +5,7 @@ import Trending from "../Trending/Trending";
 import WhatsPopulars from "../MostPopulars/WhatsPopulars";
 
 export default function HomeContent() {
+  console.count("banner")
   // const currenttext = useStore((state) => state.currenttext);
   // const setCurrenttext = useStore((state) => state.setCurrenttext);
   const populars = useStore((state) => state.populars);
@@ -13,7 +14,10 @@ export default function HomeContent() {
     Math.floor(Math.random() * populars.length)
   ];
   
-  const handleSubmit = (e) => e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("This feature is comimg soon");
+  }
   return (
     <div className="page-layout container-fluid ">
       <div

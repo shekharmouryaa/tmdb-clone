@@ -35,16 +35,21 @@ export const MediaDetails = () => {
     openModal();
   };
 
+  useEffect(() => {
+    checkfavouritelist();
+  },[])
   const addtofavlist = (fav) => {
     let oldData = JSON.parse(localStorage.getItem("addedmov") || "[]");
     if (favouritelist.includes(fav.id)) {
-        oldData = oldData.filter((m) => m.id !== fav.id);
+      oldData = oldData.filter((m) => m.id !== fav.id);
     } else {
         oldData.push(fav);
     }
-    checkfavouritelist();
     localStorage.setItem("addedmov", JSON.stringify(oldData));
+    checkfavouritelist();
 };
+console.log("favouritelist", favouritelist);
+
 let checkfavouritelist = () => {
   let oldData = JSON.parse(localStorage.getItem("addedmov") || "[]");
   let tempArray = oldData.map((mymovies) => mymovies.id);
@@ -113,7 +118,9 @@ let checkfavouritelist = () => {
                     </div>
                     <span className="score">User Score</span>
                     <div className="user-account">
-                      <span className="user-action" onClick={()=>addtofavlist(mediaDetails)}><MdFavorite/></span>
+                      <span className="user-action" onClick={()=>addtofavlist(mediaDetails)}>
+                         {favouritelist.includes(mediaDetails.id) ? <MdFavorite className='red-icon'/>: <MdFavorite/>}
+                        </span>
                       <span className="user-action"><AiOutlineUnorderedList/></span>
                       <span className="user-action"><MdBookmark/></span>
                       <span className="user-action"><AiFillStar/></span>

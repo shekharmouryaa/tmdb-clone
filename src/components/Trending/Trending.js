@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useStore from "../../Store/store";
-import { getTrailer, getTrendingDay, getTrendingWeek } from "../../API/api";
+import {  getTrendingDay, getTrendingWeek } from "../../API/api";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import {} from "react/cjs/react.production.min";
