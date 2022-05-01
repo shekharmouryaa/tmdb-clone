@@ -184,7 +184,7 @@ header {
   height: 45px;
   padding: 15px 25px;
   border-radius: 25px;
-  border: 1px solid white;
+  border: 1px solid #797979;
 }
 
 .search-button {
@@ -420,6 +420,73 @@ td:nth-child(1) {
   min-width: 400px;
 }
 
+.fav-list-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 20px 0px;
+}
+
+.details-card {
+  display: flex;
+  flex-direction: row;
+}
+
+.content-details {
+  margin: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.userRating {
+  display: flex;
+  padding: 10px 0px;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.media-title {
+  padding: 2px 5px;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 10px;
+}
+
+.media-release-date {
+  padding: 2px 5px;
+  font-size: 18px;
+  color: #636363;
+}
+
+.user-actions-items {
+  border: gray 0.5px solid;
+  font-size: 20px;
+  border-radius: 40px;
+  margin: 0 10px 0 15px;
+  color: gray;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.user-action-section {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 15px 10px -15px;
+}
+
+.action-name {
+  font-size: 18px;
+  color: gray;
+  padding: 5px;
+}
+
+
 /* FOOTER */
 
 footer {
@@ -491,6 +558,7 @@ p.footer-btn {
   color: #d3f8ec;
   text-align: center;
   background-color: #81919e52;
+  padding: 20px;
 }
 
 /*  Media OverView Start*/
@@ -558,13 +626,16 @@ p.footer-btn {
   background: #032744;
   padding: 10px 0;
 }
+
 .youtube-logo {
   width: 40px;
   margin-top: -5px;
 }
-.red-icon{
-color:red;
+
+.red-icon {
+  color: red;
 }
+
 .user-section {
   display: flex;
   align-items: center;
@@ -576,6 +647,12 @@ color:red;
   position: relative;
 }
 
+.fav-item-image{
+width:350px;
+margin:10px;
+border-radius: 8px ;
+background-color: #d8d8d8;
+}
 .user-account {
   display: flex;
   flex-direction: row;
@@ -593,9 +670,14 @@ color:red;
 
 .overview-section,
 .production-section {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 18px;
   margin: 0px 0px 15px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 
@@ -712,5 +794,53 @@ color:red;
 
   .container-fluid {
     height: 100%;
+  }
+  .mediaName {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.media-title {
+  padding: 0;
+  margin: 0;
+}
+
+  .details-card {
+    display: flex;
+    flex-direction:column;
+  }
+  .mediaImage{
+    margin:auto;
+    display: flex;
+  }
+  .user-action-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 300px;
+}
+.user-actions-items {
+  margin: 0 0 5px 5px;
+ 
+}
+.action-name {
+  font-size: 16px;
+  color: gray;
+  width: 100px;
+  padding: 5px;
+}
+.overview-section,
+.production-section {
+  font-size: 17px;
+  line-height: 18px;
+  margin: 0px 0px 15px 0;
+  display: inline;
+}
+.fav-item-image{
+  width:100%;
+  border-radius: 5px ;
+  position: relative;
+  margin:auto;
   }
 }

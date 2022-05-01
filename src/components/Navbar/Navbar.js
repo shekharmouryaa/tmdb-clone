@@ -10,22 +10,23 @@ export default function Navbar() {
         <div className="nav-menu">
           <div className="submenu-left">
           <span>
-            <a to="/">
+            <Link to="/">
               <img height="20px" 
+              style={{cursor:"pointer"}}
               src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
               alt="logo" />
-            </a>
+            </Link>
           </span>
           <span className="nav-link">
-          <a to="/" className="link">
+          <Link to="/" className="link">
               Movies
-            </a>
-            <a to="/" className="link">
+            </Link>
+            <Link to="/" className="link">
               TV Shows
-            </a>
-            <a to="/" className="link">
+            </Link>
+            <Link to="/" className="link">
               More
-            </a>
+            </Link>
           </span>
            
           </div>

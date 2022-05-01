@@ -9,15 +9,12 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import image from '../../placeholder.png';
 import { useNavigate } from "react-router-dom";
 
-
-
 export default function Trending() {
   const setLoading = useStore((state) => state.setLoading);
   const pagenumber = useStore((state) => state.pagenumber);
   const trending = useStore((state) => state.trending);
   const setTrending = useStore((state) => state.setTrending);
   const setMediaId = useStore((state) => state.setMediaId);
-  
   const [active, setActive] = useState("");
   const navigate = useNavigate();
 
@@ -60,7 +57,6 @@ export default function Trending() {
               >
                 Today
               </div>
-
               <div
                 className={`anchor ${active === "week" ? "selected" : null}`}
                 onClick={() => getTrendingWeekData()}
@@ -84,7 +80,7 @@ export default function Trending() {
                         src={moviesobject.poster_path ?  `https://image.tmdb.org/t/p/original${moviesobject.poster_path}`: image}
                         />
                     </div>
-                    <div className="content-details">
+                    <div>
                       <span className="circular-progress-bar">
                         <CircularProgressBar
                           percent={moviesobject.vote_average * 10}

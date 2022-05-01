@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="copyright">
-        <span >Copyright @ 2022</span>
+        <span >2022 ©️ TMBD-CLONE. All rights reserved.</span>
       </div>
     </footer>
   );

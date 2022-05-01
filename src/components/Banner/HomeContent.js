@@ -31,7 +31,7 @@ export default function HomeContent() {
         <div className="column_wrapper">
           <div className="content_wrapper wrap">
             <div className="title">
-              <h2>Welcome.</h2>
+              <h2>Welcome !</h2>
               <h3>
                 Millions of movies, TV shows and people to discover. Explore
                 now.

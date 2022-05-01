@@ -137,9 +137,7 @@ let checkfavouritelist = () => {
                  <span>{mediaDetails.production_companies.map((e,i)=><span key={i}>{e.name},{" "}</span> )}</span>                
               </div>
             </div>
-          </> :
-          <LoadingSkeleton/>
-        }
+          </> : null}
 
       </div>
       <VideoPlayer />

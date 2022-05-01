@@ -81,7 +81,7 @@ export default function FreeToWatch() {
                         src={moviesobject.poster_path ?  `https://image.tmdb.org/t/p/original${moviesobject.poster_path}`: image}
                         />
                       </div>
-                      <div className="content-details">
+                      <div>
                         <span className="circular-progress-bar">
                           <CircularProgressBar
                             percent={moviesobject.vote_average * 10}
