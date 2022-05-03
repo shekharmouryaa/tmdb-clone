@@ -8,12 +8,6 @@ import Navbar from "../components/Navbar/Navbar";
 import SignUp from "../components/Users/SignUp";
 
 export default function MainRoutes() {
-
-  
-
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   
   return (
     <>

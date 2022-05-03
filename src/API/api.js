@@ -10,7 +10,8 @@ export const getPopularMovies = async (pagenumber) => {
   const data = await axios.get("/movie/popular", {
     params: {
       api_key: API_KEY,
-      page: `${Math.ceil(Math.random() * 5)}`,
+      // page: `${Math.ceil(Math.random() * 5)}`,
+      page: 1,
 
     },
   });
@@ -56,7 +57,8 @@ export const getFreeMovies = async (pagenumber) => {
     params: {
       api_key: API_KEY,
       language: "en-US",
-      page: `${Math.ceil(Math.random() * 5)}`,
+      // page: `${Math.ceil(Math.random() * 5)}`,
+      page: 2,
       include_video: "false",
       include_adult: "false",
       with_watch_monetization_types: "free",
@@ -69,7 +71,8 @@ export const getFreeTvShow = async (pagenumber) => {
     params: {
       api_key: API_KEY,
       language: "en-US",
-      page: `${Math.ceil(Math.random() * 4)}`,
+      // page: `${Math.ceil(Math.random() * 4)}`,
+      page:1,
       include_video: "false",
       include_adult: "false",
       with_watch_monetization_types: "free",

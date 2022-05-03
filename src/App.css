@@ -680,7 +680,20 @@ background-color: #d8d8d8;
   overflow: hidden;
 }
 
-
+.column_fav_header{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  margin-left: 15px;
+}
+.fav-content-heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .tagline {
   font-size: 14px;
   font-style: italic;
@@ -843,4 +856,19 @@ background-color: #d8d8d8;
   position: relative;
   margin:auto;
   }
+  .media-info{
+    display:flex;
+    flex-direction:column;
+    margin-left: 10px;
+  }
+  .column_fav_header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: normal;
+}
+.fav-content-heading {
+  order: 1;
+  margin: 10px 0px;
+}
 }

@@ -3,15 +3,15 @@ import React from 'react'
 import useStore from "../../Store/store";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
-import { AiOutlineUnorderedList, AiFillStar ,AiFillDelete } from "react-icons/ai";
+import { AiOutlineUnorderedList, AiFillStar, AiFillDelete } from "react-icons/ai";
 import { MdFavorite, MdBookmark } from "react-icons/md";
 export default function Favouritelist() {
     const genres = useStore(state => state.genres)
     const setgenres = useStore(state => state.setgenres)
     const currentgenre = useStore(state => state.currentgenre)
     const setcurrentgenre = useStore(state => state.setcurrentgenre)
-    const newmovies = useStore(state => state.newmovies)
-    const setnewmovies = useStore(state => state.setnewmovies)
+    const favmedialist = useStore(state => state.favmedialist)
+    const setfavmedialist = useStore(state => state.setfavmedialist)
     const currenttext = useStore(state => state.currenttext)
     const setCurrenttext = useStore(state => state.setCurrenttext)
     const loading = useStore(state => state.loading)
@@ -21,68 +21,59 @@ export default function Favouritelist() {
     useEffect(() => {
         let temparray = [];
         let localdata = JSON.parse(localStorage.getItem('addedmov') || '[]');
-        setnewmovies(localdata)
+        setfavmedialist(localdata)
+        window.scrollTo(0, 0);
     }, [])
 
- 
-    // let filtermovies = [];
-    // if (loading) {
-    //     filtermovies = newmovies.filter(item => item.original_title.toLowerCase().includes(currenttext.toLowerCase()));
-    //     if (currentgenre !== "All Genres") {
-    //         filtermovies = newmovies.filter((movieobject) => movieobject.genre_ids[0] === currentgenre)
-    //     }
-    // }
-
-    // const activegenre = (genre) => {
-    //     setcurrentgenre(genre)
-    // }
+    let filtermovies = [];
+        filtermovies = favmedialist.filter(item => item.original_title.toLowerCase().includes(currenttext.toLowerCase()));
 
     // const sortRatDesc = () => {
-    //     let temp = newmovies;
+    //     let temp = favmedialist;
     //     temp.sort((a, b) => b.vote_average - a.vote_average)
-    //     setnewmovies(temp)
+    //     setfavmedialist(temp)
     // }
     // const sortRatAsc = () => {
-    //     let temp = newmovies;
+    //     let temp = favmedialist;
     //     temp.sort((a, b) => a.vote_average - b.vote_average)
-    //     setnewmovies(temp)
+    //     setfavmedialist(temp)
     // }
     const deleteMovie = (id) => {
         let newarray = [];
-        newarray = newmovies.filter((movieobject) => movieobject.id !== id)
-        setnewmovies(newarray)
+        newarray = favmedialist.filter((movieobject) => movieobject.id !== id)
+        setfavmedialist(newarray)
         localStorage.setItem('addedmov', JSON.stringify(newarray))
     }
 
     return (
         <div className="container-fluid main-content ">
-            {/* <div className="row">
-                <div className="col">
+            <div className="column_fav_header">
+                <div className="fav-content-heading">
+                    <div className="HeadingContainer">
+                        <span className="section-title">My Favorites</span>
+                    </div>
+                    <span className="selector_wrapper">
+                        <div
+                            className={`anchor ${true ? "selected" : ""}`}
+                        >
+                            Movie
+                        </div>
+                        <div
+                            className={`anchor ${"active" === "tv" ? "selected" : ""}`}
+                        >
+                            TV
+                        </div>
+                    </span>
+                </div>
+                <div>
                     <form>
-                        <input className="form-control search-box" type="search" placeholder="Search in list" aria-label="Search" value={currenttext} onChange={(e) => setCurrenttext(e.target.value)} />
+                        <input width={300} className="form-control search-box" type="search" placeholder="Search in list" aria-label="Search" value={currenttext} onChange={(e) => setCurrenttext(e.target.value)} />
                     </form>
-                </div>
-            </div> */}
-            <div className="column_header">
-                <div className="HeadingContainer">
-                    <span className="section-title">My Favorites</span>
-                </div>
-                <div className="selector_wrapper  ">
-                    <div
-                        className={`anchor ${true ? "selected" : ""}`}
-                    >
-                        Movie
-                    </div>
-                    <div
-                        className={`anchor ${"active" === "tv" ? "selected" : ""}`}
-                    >
-                        TV
-                    </div>
                 </div>
             </div>
             <div className="scroller_wrap">
-                {newmovies.length
-                    ? newmovies.sort().map((moviesobject, i) => (
+                {filtermovies.length
+                    ? filtermovies.reverse().map((moviesobject, i) => (
                         <div className=" fav-list-card " key={i} >
                             <div className="details-card">
                                 <div className="mediaImage">
@@ -103,7 +94,7 @@ export default function Favouritelist() {
                                             fontColor={"#fff"}
                                             fontSize={"1.8rem"}
                                             fontWeight={400}
-                                            size={40}
+                                            size={60}
                                             cut={0}
                                             rotation={-90}
                                             opacity={10}
@@ -111,13 +102,15 @@ export default function Favouritelist() {
                                             unit={"%"}
                                             textPosition={"0.35em"}
                                         />
-                                        <div className="media-title">
-                                            {moviesobject.name || moviesobject.title}
-                                        </div>
-                                        <div className="media-release-date">
-                                            {(moviesobject.release_date || moviesobject.first_air_date).replace(/(\d{4})-(\d{1,2})-(\d{1,2})/, function(match,y,m,d) { 
-                return d + '-' + m + '-' + y;  
-            })}
+                                        <div className="media-info">
+                                            <div className="media-title">
+                                                {moviesobject.name || moviesobject.title}
+                                            </div>
+                                            <div className="media-release-date">
+                                                {(moviesobject.release_date || moviesobject.first_air_date).replace(/(\d{4})-(\d{1,2})-(\d{1,2})/, function (match, y, m, d) {
+                                                    return d + '-' + m + '-' + y;
+                                                })}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="overview-section">{moviesobject.overview}</div>
@@ -133,7 +126,7 @@ export default function Favouritelist() {
                                             <span className="user-actions-items"><AiFillStar />
                                             </span>
                                             <span className="action-name" >Add to List</span>
-                                            <span className="user-actions-items" onClick={()=>deleteMovie(moviesobject.id)}><AiFillDelete/>
+                                            <span className="user-actions-items" onClick={() => deleteMovie(moviesobject.id)}><AiFillDelete />
                                             </span>
                                             <span className="action-name" >Remove</span>
                                         </div>
@@ -142,8 +135,8 @@ export default function Favouritelist() {
                             </div>
                         </div>
                     ))
-                    : <div style={{ display: "flex" }}>
-                        Loading...
+                    : <div style={{ display: "flex" , justifyContent:"center",margin:"0 200px" }}>
+                        <h3>No match found.</h3>
                     </div>}
             </div>
         </div>

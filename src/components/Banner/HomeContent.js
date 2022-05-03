@@ -10,10 +10,12 @@ export default function HomeContent() {
   // const setCurrenttext = useStore((state) => state.setCurrenttext);
   const populars = useStore((state) => state.populars);
 
-  const backgroundImage = populars.map((img) => img.backdrop_path)[
-    Math.floor(Math.random() * populars.length)
+  const backgroundImage = populars.map((img) => img.backdrop_path)[2
+    // Math.floor(Math.random() * populars.length)
   ];
-  
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("This feature is comimg soon");
