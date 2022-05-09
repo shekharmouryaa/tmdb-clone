@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="container-fluid">
+    <footer className="container-fluid footer-position">
       <div className="footer">
         <div className="footer-items ">
           <img

@@ -65,9 +65,9 @@ export default function Favouritelist() {
                         </div>
                     </span>
                 </div>
-                <div>
+                <div className="fav-search-input">
                     <form>
-                        <input width={300} className="form-control search-box" type="search" placeholder="Search in list" aria-label="Search" value={currenttext} onChange={(e) => setCurrenttext(e.target.value)} />
+                        <input  className="form-control search-box" type="search" placeholder="Search in list" aria-label="Search" value={currenttext} onChange={(e) => setCurrenttext(e.target.value)} />
                     </form>
                 </div>
             </div>
@@ -135,7 +135,7 @@ export default function Favouritelist() {
                             </div>
                         </div>
                     ))
-                    : <div style={{ display: "flex" , justifyContent:"center",margin:"0 200px" }}>
+                    : <div style={{ display: "flex" , justifyContent:"center"}}>
                         <h3>No match found.</h3>
                     </div>}
             </div>

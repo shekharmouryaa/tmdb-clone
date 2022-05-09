@@ -11,7 +11,8 @@ export default function MainRoutes() {
   
   return (
     <>
-      <Navbar />
+    <Navbar />
+    <div className="body-flex">
       <Routes>
         <Route path="/" element={<HomeContent />} />
         <Route path="/favouritelist" element={<Favouritelist />} />
@@ -19,6 +20,7 @@ export default function MainRoutes() {
         <Route path="/details/:id" element={<MediaDetails />} />
       </Routes>
       <Footer />
+    </div>
     </>
   );
 }

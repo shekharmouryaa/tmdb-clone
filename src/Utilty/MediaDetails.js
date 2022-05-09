@@ -1,7 +1,5 @@
-/* eslint-disable no-dupe-keys */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
+
 import React, { useEffect, useState } from "react";
 import { getMediaDetails, getTrailer } from "../API/api";
 import useStore from "../Store/store";
@@ -9,8 +7,7 @@ import logo from '../youtube.svg'
 import VideoPlayer from "./VideoPlayer";
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 import { AiOutlineUnorderedList, AiFillStar } from "react-icons/ai";
-import { MdFavorite,MdBookmark } from "react-icons/md";
-import LoadingSkeleton from "./LoadingSkeleton";
+import { MdFavorite, MdBookmark } from "react-icons/md";
 
 export const MediaDetails = () => {
   const mediaId = localStorage.getItem("movieid");
@@ -37,24 +34,24 @@ export const MediaDetails = () => {
 
   useEffect(() => {
     checkfavouritelist();
-  },[])
+  }, [])
   const addtofavlist = (fav) => {
     let oldData = JSON.parse(localStorage.getItem("addedmov") || "[]");
     if (favouritelist.includes(fav.id)) {
       oldData = oldData.filter((m) => m.id !== fav.id);
     } else {
-        oldData.push(fav);
+      oldData.push(fav);
     }
     localStorage.setItem("addedmov", JSON.stringify(oldData));
     checkfavouritelist();
-};
-console.log("favouritelist", favouritelist);
+  };
+  console.log("favouritelist", favouritelist);
 
-let checkfavouritelist = () => {
-  let oldData = JSON.parse(localStorage.getItem("addedmov") || "[]");
-  let tempArray = oldData.map((mymovies) => mymovies.id);
-  setFavouritelist(tempArray);
-};
+  let checkfavouritelist = () => {
+    let oldData = JSON.parse(localStorage.getItem("addedmov") || "[]");
+    let tempArray = oldData.map((mymovies) => mymovies.id);
+    setFavouritelist(tempArray);
+  };
   let Background;
   if (mediaDetails) {
     Background = {
@@ -65,7 +62,7 @@ let checkfavouritelist = () => {
   return (
     <div style={Background} className="container-fluid backdrop_poster">
       <span className="row "
-        ></span>
+      ></span>
       <div className="media-content">
         {loading ?
           <>
@@ -97,44 +94,44 @@ let checkfavouritelist = () => {
               </div>
 
               <div className="user-section">
-                    <div>
-                    <CircularProgressBar
-                      className="circular-progressBar"
-                      percent={mediaDetails.vote_average * 10}
-                      linearGradient={["#18cdb5", "#1fb76d"]}
-                      colorSlice={"#091c22"}
-                      colorCircle={"#091c22"}
-                      fontColor={"#fff"}
-                      fontWeight={400}
-                      fontSize={"1.5rem"}
-                      size={60}
-                      cut={0}
-                      rotation={-90}
-                      opacity={10}
-                      fill={"#032541"}
-                      unit={"%"}
-                      textPosition={"0.35em"}
-                    />
-                    </div>
-                    <span className="score">User Score</span>
-                    <div className="user-account">
-                      <span className="user-action" onClick={()=>addtofavlist(mediaDetails)}>
-                         {favouritelist.includes(mediaDetails.id) ? <MdFavorite className='red-icon'/>: <MdFavorite/>}
-                        </span>
-                      <span className="user-action"><AiOutlineUnorderedList/></span>
-                      <span className="user-action"><MdBookmark/></span>
-                      <span className="user-action"><AiFillStar/></span>
-                    </div>
+                <div>
+                  <CircularProgressBar
+                    className="circular-progressBar"
+                    percent={mediaDetails.vote_average * 10}
+                    linearGradient={["#18cdb5", "#1fb76d"]}
+                    colorSlice={"#091c22"}
+                    colorCircle={"#091c22"}
+                    fontColor={"#fff"}
+                    fontWeight={400}
+                    fontSize={"1.5rem"}
+                    size={60}
+                    cut={0}
+                    rotation={-90}
+                    opacity={10}
+                    fill={"#032541"}
+                    unit={"%"}
+                    textPosition={"0.35em"}
+                  />
+                </div>
+                <span className="score">User Score</span>
+                <div className="user-account">
+                  <span className="user-action" onClick={() => addtofavlist(mediaDetails)}>
+                    {favouritelist.includes(mediaDetails.id) ? <MdFavorite className='red-icon' /> : <MdFavorite />}
+                  </span>
+                  <span className="user-action"><AiOutlineUnorderedList /></span>
+                  <span className="user-action"><MdBookmark /></span>
+                  <span className="user-action"><AiFillStar /></span>
+                </div>
 
               </div>
               <p className='tagline'> {mediaDetails.tagline}</p>
               <div className="overview-section">
-               <h5><b>Overview</b> </h5>
-                 <span>{mediaDetails.overview}</span>                
+                <h5><b>Overview</b> </h5>
+                <span>{mediaDetails.overview}</span>
               </div>
               <div className="production-section">
-               <h5><b>Production By </b> </h5>
-                 <span>{mediaDetails.production_companies.map((e,i)=><span key={i}>{e.name},{" "}</span> )}</span>                
+                <h5><b>Production By </b> </h5>
+                <span>{mediaDetails.production_companies.map((e, i) => <span key={i}>{e.name},{" "}</span>)}</span>
               </div>
             </div>
           </> : null}
