@@ -764,7 +764,9 @@ p.footer-btn {
   ::-webkit-scrollbar-thumb {
     background: #22A8CA;
   }
-
+  .body-flex {
+    height:100%;
+  }
   .inner_content {
     padding: 0 15px;
     background-size: cover;
